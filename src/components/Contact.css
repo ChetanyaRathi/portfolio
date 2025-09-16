@@ -1,0 +1,56 @@
+/* src/components/Contact.css */
+#contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 80vh;
+    padding: 100px 8%;
+}
+
+#contact h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.contact-tagline {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+.contact-details {
+    margin-bottom: 30px;
+}
+
+.contact-details p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.contact-details a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+    color: var(--primary-color);
+}
+
+.contact-socials {
+    display: flex;
+    gap: 25px;
+}
+
+.contact-socials a {
+    color: var(--text-color);
+    font-size: 2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-socials a:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+}

@@ -1,0 +1,108 @@
+/* src/components/About.css */
+
+/* Keyframe animations (can be in a separate file, but included here for clarity) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 90vh;
+    padding: 100px 8%;
+}
+
+#about h2 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    text-align: center;
+    /* Add animation to the title */
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+}
+
+.about-image {
+    flex-basis: 400px;
+    flex-shrink: 0;
+    /* Add animation to the image */
+    animation: fadeInScale 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.about-text {
+    flex-basis: 600px;
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    /* Add animation to all paragraphs */
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Add staggered delays for each paragraph */
+.about-text p:nth-of-type(1) {
+    animation-delay: 0.4s;
+}
+.about-text p:nth-of-type(2) {
+    animation-delay: 0.6s;
+}
+.about-text p:nth-of-type(3) {
+    animation-delay: 0.8s;
+}
+
+/* src/components/About.css */
+/* ... keep all your existing styles ... */
+
+@media (max-width: 768px) {
+    #about {
+        padding: 80px 8%;
+    }
+
+    .about-container {
+        flex-direction: column;
+    }
+
+    .about-text p {
+        text-align: center;
+    }
+}

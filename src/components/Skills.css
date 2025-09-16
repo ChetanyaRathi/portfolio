@@ -1,0 +1,110 @@
+/* src/components/Skills.css */
+#skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 8%;
+}
+
+#skills h2 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.category-card {
+    background-color: var(--card-background);
+    border: 1px solid #2a3c63;
+    border-radius: 15px;
+    padding: 30px;
+    /* Add animation to the cards */
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Add staggered delays for each card */
+.category-card:nth-of-type(1) {
+    animation-delay: 0.2s;
+}
+.category-card:nth-of-type(2) {
+    animation-delay: 0.4s;
+}
+.category-card:nth-of-type(3) {
+    animation-delay: 0.6s;
+}
+.category-card:nth-of-type(4) {
+    animation-delay: 0.8s;
+}
+
+
+.category-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: var(--heading-color);
+    border-bottom: 1px solid #2a3c63;
+    padding-bottom: 10px;
+}
+
+.skills-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--background-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.skill-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.skill-item i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    width: 30px;
+    text-align: center;
+}
+
+.skill-item span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .skills-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* src/components/Skills.css */
+/* ... keep all your existing styles ... */
+
+/* Replace old @media blocks with this one */
+@media (max-width: 992px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}

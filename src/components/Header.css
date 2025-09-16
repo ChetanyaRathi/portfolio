@@ -1,0 +1,141 @@
+/* src/components/Header.css */
+/* src/components/Header.css */
+/* ... keep all your existing styles for header, nav, logo ... */
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 400;
+    transition: color 0.3s ease;
+    position: relative; /* ADD THIS for the pseudo-element */
+    padding-bottom: 5px; /* ADD THIS to make space for the underline */
+}
+
+/* ADD THIS PSEUDO-ELEMENT FOR THE UNDERLINE */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0); /* Start with no width */
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+/* ADD THIS TO MAKE THE UNDERLINE APPEAR ON HOVER */
+.nav-links li a:hover::after {
+    transform: scaleX(1); /* Expand to full width */
+    transform-origin: bottom left;
+}
+
+/* ... keep all your other existing styles ... */
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px 8%;
+    background-color: rgba(18, 18, 28, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: block;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+.github-button {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    padding: 8px 18px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.github-button:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+
+
+.hamburger {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger .bar {
+    height: 3px;
+    width: 25px;
+    background-color: var(--text-color);
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* MEDIA QUERY FOR RESPONSIVE HEADER */
+@media (max-width: 992px) { /* A wider breakpoint for nav */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Start off-screen */
+        width: 70%;
+        height: 100vh;
+        background-color: var(--card-background);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.5s ease-in-out;
+        gap: 50px;
+    }
+
+    .nav-links.active {
+        right: 0; /* Slide in */
+    }
+
+    .github-button {
+        display: none; /* Hide the GitHub button on smaller screens */
+    }
+    
+    .hamburger {
+        display: flex; /* Show the hamburger icon */
+    }
+}

@@ -1,0 +1,47 @@
+/* src/index.css */
+:root {
+    --primary-color: #07d4f3; /* New Accent Purple */
+    --background-color: #12121c; /* New Dark Background */
+    --card-background: #1a1a2e;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3 {
+    color: var(--heading-color);
+}
+
+/* Add this to the end of src/index.css */
+
+/* --- Section Hover Animation --- */
+
+/* First, define the transition for the sections we want to animate */
+#about, #skills, #experience, #projects {
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  border-radius: 20px; /* Optional: adds rounded corners to help the glow look nice */
+}
+
+/* Then, define the style that applies on hover */
+#about:hover, 
+#skills:hover, 
+#experience:hover, 
+#projects:hover {
+  transform: scale(1.02); /* Makes the section slightly larger */
+  box-shadow: 0 0 40px rgba(7, 212, 243, 0.2); /* Glow effect using your Cyber Teal theme color */
+}

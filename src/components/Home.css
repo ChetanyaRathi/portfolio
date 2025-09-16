@@ -1,0 +1,190 @@
+/* src/components/Home.css */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 120px 8% 60px;
+}
+
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+.home-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.home-content h1 {
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 5px;
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.title-subheader {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease-in-out;
+    min-height: 1.2em;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-style: italic;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 3px solid var(--primary-color);
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.description {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+.resume-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.8s ease-out 0.8s forwards;
+    opacity: 0;
+}
+
+.resume-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(200, 97, 255, 0.3);
+}
+
+.home-image {
+    flex-shrink: 0;
+    position: relative;
+    right: 50px;
+    animation: fadeInScale 0.8s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+.home-image img {
+    width: 400px;
+    height: 500px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    #home {
+        padding: 100px 8% 30px;
+    }
+    
+    .home-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .home-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .title-subheader {
+        font-size: 0.9rem; /* Adjusted for mobile */
+        min-height: 2.4em; /* Give more space for multi-line titles */
+    }
+
+    .home-image {
+        right: 0;
+        margin-bottom: 30px;
+    }
+
+    .home-image img {
+        width: 280px;
+        height: 280px;
+    }
+
+    .tagline {
+        border-left: none;
+        padding-left: 0;
+    }
+}
+/* src/components/Home.css */
+/* ... keep all your existing styles ... */
+
+@media (max-width: 768px) {
+    #home {
+        padding: 100px 8% 30px;
+    }
+    
+    .home-container {
+        flex-direction: column-reverse; /* Stacks image on top of text */
+        text-align: center;
+    }
+
+    .home-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .title-subheader {
+        font-size: 3rem;
+    }
+
+    .home-image {
+        right: 0; /* Reset the shift */
+        margin-bottom: 30px;
+    }
+
+    .home-image img {
+        width: 280px;
+        height: 280px;
+    }
+}
