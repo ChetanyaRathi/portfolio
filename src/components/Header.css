@@ -1,42 +1,4 @@
 /* src/components/Header.css */
-/* src/components/Header.css */
-/* ... keep all your existing styles for header, nav, logo ... */
-
-.nav-links li a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 400;
-    transition: color 0.3s ease;
-    position: relative; /* ADD THIS for the pseudo-element */
-    padding-bottom: 5px; /* ADD THIS to make space for the underline */
-}
-
-/* ADD THIS PSEUDO-ELEMENT FOR THE UNDERLINE */
-.nav-links li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-color);
-    transform: scaleX(0); /* Start with no width */
-    transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
-}
-
-.nav-links li a:hover {
-    color: var(--primary-color);
-}
-
-/* ADD THIS TO MAKE THE UNDERLINE APPEAR ON HOVER */
-.nav-links li a:hover::after {
-    transform: scaleX(1); /* Expand to full width */
-    transform-origin: bottom left;
-}
-
-/* ... keep all your other existing styles ... */
-
 header {
     position: fixed;
     width: 100%;
@@ -60,6 +22,7 @@ nav {
     width: 45px;
     height: 45px;
     flex-shrink: 0;
+    z-index: 101; /* Ensure logo is above mobile menu */
 }
 
 .nav-links {
@@ -73,10 +36,30 @@ nav {
     color: var(--text-color);
     font-weight: 400;
     transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
 }
 
 .nav-links li a:hover {
     color: var(--primary-color);
+}
+
+.nav-links li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 .github-button {
@@ -95,12 +78,12 @@ nav {
     color: var(--background-color);
 }
 
-
-
+/* Hamburger Icon Styling */
 .hamburger {
-    display: none; /* Hidden on desktop */
+    display: none;
     flex-direction: column;
     cursor: pointer;
+    z-index: 101; /* Ensure it's clickable */
 }
 
 .hamburger .bar {
@@ -111,8 +94,8 @@ nav {
     transition: 0.4s;
 }
 
-/* MEDIA QUERY FOR RESPONSIVE HEADER */
-@media (max-width: 992px) { /* A wider breakpoint for nav */
+/* Media Query for Mobile Responsiveness */
+@media (max-width: 992px) {
     .nav-links {
         position: fixed;
         top: 0;
@@ -128,11 +111,11 @@ nav {
     }
 
     .nav-links.active {
-        right: 0; /* Slide in */
+        right: 0; /* Slide in from the right */
     }
 
     .github-button {
-        display: none; /* Hide the GitHub button on smaller screens */
+        display: none;
     }
     
     .hamburger {

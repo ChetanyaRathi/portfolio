@@ -1,10 +1,11 @@
 /* src/components/Projects.css */
+
 #projects {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
     padding: 100px 8%;
+    min-height: 80vh;
 }
 
 #projects h2 {
@@ -13,71 +14,121 @@
     text-align: center;
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+.project-accordion {
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
+    border-top: 1px solid #2a3c63;
 }
 
-.project-card {
+.accordion-item {
+    border-bottom: 1px solid #2a3c63;
+}
+
+.accordion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-title:hover {
     background-color: var(--card-background);
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #2a3c63;
 }
 
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(200, 97, 255, 0.2);
-}
-
-.project-image .image-placeholder {
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    background-color: #2a3c63;
-}
-
-.project-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.project-card h3 {
+.accordion-title h3 {
     font-size: 1.5rem;
-    padding: 15px 20px 10px;
+    font-weight: 500;
 }
 
-.project-card p {
-    font-size: 1rem;
-    line-height: 1.6;
-    padding: 0 20px 20px;
-    flex-grow: 1;
+.accordion-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
-.project-links {
-    display: flex;
-    justify-content: flex-start;
-    gap: 15px;
-    padding: 0 20px 20px;
+.icon-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: translate(-50%, -50%);
+    transition: transform 0.4s ease-out;
 }
 
-.project-links a {
-    text-decoration: none;
+.icon-bar:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* Rotate the plus icon to a cross when active */
+.accordion-item.active .icon-bar:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+
+.accordion-content {
+    max-height: 0; /* Initially collapsed */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding: 0 15px;
+}
+
+/* Expand the content when active */
+.accordion-item.active .accordion-content {
+    max-height: 500px; /* Adjust as needed */
+    padding: 20px 15px 30px;
+}
+
+.project-company {
     color: var(--primary-color);
     font-weight: 500;
-    padding: 8px 15px;
-    border: 1px solid var(--primary-color);
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 20px;
 }
 
-.project-links a:hover {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+.accordion-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.accordion-content ul li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 25px;
+}
+
+.accordion-content ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+/* src/components/Experience.css */
+/* ... keep all your existing styles ... */
+
+@media (max-width: 768px) {
+    .experience-timeline::before {
+        left: 10px; /* Move line to the left */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 0;
+        left: 0 !important; /* Reset left positioning */
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+
+    .timeline-dot {
+        left: 0 !important; /* Align all dots on the line */
+    }
 }

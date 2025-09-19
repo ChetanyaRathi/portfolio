@@ -1,0 +1,126 @@
+/* src/components/Timeline.css */
+
+.experience-timeline {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px 0;
+}
+
+/* The vertical line of the timeline */
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: var(--primary-color);
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 10px 40px;
+    margin-bottom: 40px;
+}
+
+/* Position items on the left and right */
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+/* The circle on the timeline */
+.timeline-dot {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--background-color);
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -10px;
+}
+
+.timeline-content {
+    background-color: var(--card-background);
+    padding: 20px 30px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.experience-company {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.experience-date {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-bottom: 15px;
+}
+
+.timeline-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.timeline-content ul li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Custom bullet points for the list */
+.timeline-content ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .experience-timeline::before {
+        left: 10px; /* Move line to the left */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 0;
+        left: 0 !important; /* Reset left positioning */
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+
+    .timeline-dot {
+        left: 0 !important; /* Align all dots on the line */
+    }
+}
