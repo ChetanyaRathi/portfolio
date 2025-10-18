@@ -22,7 +22,7 @@ nav {
     width: 45px;
     height: 45px;
     flex-shrink: 0;
-    z-index: 101; /* Ensure logo is above mobile menu */
+    z-index: 101;
 }
 
 .nav-links {
@@ -78,12 +78,11 @@ nav {
     color: var(--background-color);
 }
 
-/* Hamburger Icon Styling */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    z-index: 101; /* Ensure it's clickable */
+    z-index: 101;
 }
 
 .hamburger .bar {
@@ -94,12 +93,12 @@ nav {
     transition: 0.4s;
 }
 
-/* Media Query for Mobile Responsiveness */
+/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 992px) {
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%; /* Start off-screen */
+        right: -100%;
         width: 70%;
         height: 100vh;
         background-color: var(--card-background);
@@ -111,7 +110,7 @@ nav {
     }
 
     .nav-links.active {
-        right: 0; /* Slide in from the right */
+        right: 0;
     }
 
     .github-button {
@@ -119,6 +118,16 @@ nav {
     }
     
     .hamburger {
-        display: flex; /* Show the hamburger icon */
+        display: flex;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 }

@@ -1,9 +1,8 @@
 // src/components/Home.jsx
-import React, { useState, useEffect } from 'react'; // Make sure to import hooks
+import React, { useState, useEffect } from 'react';
 import './Home.css';
 import profilePic from '../assets/profile.png';
 
-// Array of titles to cycle through
 const titles = [
   'SOFTWARE DEVELOPER',
   'MACHINE LEARNING ENGINEER',
@@ -17,32 +16,22 @@ const Home = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFadeState('fade-out'); // Start fading out
-
+      setFadeState('fade-out');
       setTimeout(() => {
-        // After fade out, change the title and fade back in
         setTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
         setFadeState('fade-in');
-      }, 500); // This should match the CSS transition time
-
-    }, 3000); // Change title every 3 seconds (3000ms)
-
-    return () => clearInterval(interval); // Cleanup on component unmount
+      }, 500);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
-
 
   return (
     <section id="home">
       <div className="home-container">
         <div className="home-content">
           <h1>Hi, I am Chetanya Rathi</h1>
-          {/* This h2 now uses state to display the cycling title and fade class */}
-          <h2 className={`title-subheader ${fadeState}`}>
-            {titles[titleIndex]}
-          </h2>
-          <p className="tagline">
-            "Building efficient, full-stack solutions with a focus on great user experience."
-          </p>
+          <h2 className={`title-subheader ${fadeState}`}>{titles[titleIndex]}</h2>
+          <p className="tagline">"Building efficient, full-stack solutions with a focus on great user experience."</p>
           <p className="description">
             As a Computer Science Master's student at Syracuse University, I have hands-on internship experience developing with the MERN stack and leveraging cloud technologies like AWS. I thrive at the intersection of design and development, crafting solutions that not only perform seamlessly but also leave a lasting impression.
           </p>
@@ -50,8 +39,18 @@ const Home = () => {
             View or Download Resume
           </a>
         </div>
-        <div className="home-image">
-          <img src={profilePic} alt="Chetanya Rathi" />
+
+        <div className="home-image-wrapper">
+          <div className="home-image">
+            <img src={profilePic} alt="Chetanya Rathi" />
+          </div>
+          <div className="orbit"></div>
+          <div className="floating-icons">
+            <span className="icon-item icon-1"><i className="fa-brands fa-react"></i></span>
+            <span className="icon-item icon-2"><i className="fa-brands fa-js-square"></i></span>
+            <span className="icon-item icon-3"><i className="fa-brands fa-python"></i></span>
+            <span className="icon-item icon-4"><i className="fa-brands fa-aws"></i></span>
+          </div>
         </div>
       </div>
     </section>

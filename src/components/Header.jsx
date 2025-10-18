@@ -12,8 +12,8 @@ const Header = () => {
           <svg width="100%" height="100%" viewBox="0 0 200 200">
             <defs>
               <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: '#07d4f3', stopOpacity:1}} />
-                <stop offset="100%" style={{stopColor: '#00bfff', stopOpacity:1}} />
+                <stop offset="0%" stopColor="#07d4f3" />
+                <stop offset="100%" stopColor="#00bfff" />
               </linearGradient>
             </defs>
             <path fill="url(#logoGradient)" d="M160,100c0,44.183-35.817,80-80,80S0,144.183,0,100,35.817,20,80,20,160,55.817,160,100ZM30,100c0,27.614,22.386,50,50,50s50-22.386,50-50-22.386-50-50-50-50,22.386-50,50Z"/>
@@ -33,8 +33,7 @@ const Header = () => {
           GitHub Profile
         </a>
 
-        {/* This is the hamburger icon that appears on mobile */}
-        <div className="hamburger" onClick={() => setIsNavActive(!isNavActive)}>
+        <div className={`hamburger ${isNavActive ? 'active' : ''}`} onClick={() => setIsNavActive(!isNavActive)}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
