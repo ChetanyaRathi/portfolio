@@ -9,16 +9,17 @@ const projectsData = [
     description: [
       'Developed an award-winning system, reducing manual grading time by 60% through NLP and constraint-based scheduling.',
       'Built a Flask web application for real-time scoring, processing 500+ assignment submissions with an automated pipeline.',
-      'Integrated web scraping for faculty research interests to improve assignment matching accuracy by 40%.',
+      'Integrated web scraping of faculty research data and structured reporting, increased assignment-matching accuracy by 40%',
+,
     ],
   },
   {
-    role: 'Voice Cloning & Forgery Detection',
+    role: 'Tweet AI Generated - Text Detection',
     company: 'Personal Project',
     description: [
-      'Developed a deep learning model to detect forged voice samples with 95% accuracy.',
-      'Applied advanced machine learning techniques for audio signal processing.',
-      'Implemented Wave GAN and Spec GAN, achieving 20% higher precision than baseline models.',
+      'Deployed a BERT-based classifier to distinguish AI-generated tweets from human-written text with 96.81% accuracy.',
+      'Implemented advanced preprocessing, tokenization, and fine-tuning techniques to optimize model performance and reliability.',
+
     ],
   },
   {
@@ -28,6 +29,15 @@ const projectsData = [
       'Designed a real-time monitoring system using the MERN stack and OpenCV, reducing unauthorized browsing by 50%.',
       'Built a Java-based application to enhance system compatibility and improve monitoring accuracy by 40%.',
       'Successfully deployed the system in a college computer lab, tracking 100+ student sessions daily.',
+    ],
+  },
+  {
+    role: 'Voice Cloning & Forgery Detection',
+    company: 'Personal Project',
+    description: [
+      'Developed a deep learning model to detect forged voice samples with 95% accuracy.',
+      'Applied advanced machine learning techniques for audio signal processing.',
+      'Implemented Wave GAN and Spec GAN, achieving 20% higher precision than baseline models.',
     ],
   },
 ];
