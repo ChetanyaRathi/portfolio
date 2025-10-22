@@ -13,28 +13,36 @@ const skillCategories = [
         { name: 'MERN Stack', iconClass: 'fa-brands fa-react' },
         { name: 'PHP', iconClass: 'fa-brands fa-php' },
         { name: 'HTML5', iconClass: 'fa-brands fa-html5' },
-        { name: 'CSS3', iconClass: 'fa-brands fa-css3-alt' },
+        { name: 'Tailwind CSS', iconClass: 'fa-brands fa-css3-alt' },
     ],
   },
   {
     title: 'Languages & Backend',
     skills: [
-        { name: 'Python', iconClass: 'fa-brands fa-python' },
-        { name: 'Java', iconClass: 'fa-brands fa-java' },
+        { name: 'RAG', iconClass: 'fa-brands fa-python' },
+        { name: 'Python', iconClass: 'fa-brands fa-java' },
+        { name: 'GenAI', iconClass: 'fa-brands fa-java' },
         { name: 'C++', iconClass: 'fa-solid fa-c' },
         { name: 'Node.js', iconClass: 'fa-brands fa-node-js' },
         { name: 'Flask', iconClass: 'fa-brands fa-python' },
+        { name: 'Java', iconClass: 'fa-brands fa-python' },
     ],
   },
   {
     title: 'Databases & Cloud',
     skills: [
+        { name: 'Google Cloud', iconClass: 'fa-brands fa-aws' },
+        { name: 'Gemini', iconClass: 'fa-brands fa-aws' },
+        { name: 'Vertex AI', iconClass: 'fa-solid fa-server' },
+        { name: 'OpenAI', iconClass: 'fa-solid fa-server' },
         { name: 'SQL', iconClass: 'fa-solid fa-database' },
         { name: 'MongoDB', iconClass: 'fa-solid fa-leaf' },
         { name: 'PostgreSQL', iconClass: 'fa-solid fa-database' },
         { name: 'AWS S3', iconClass: 'fa-brands fa-aws' },
+        { name: 'AWS RDS', iconClass: 'fa-brands fa-aws' },
         { name: 'AWS Lambda', iconClass: 'fa-brands fa-aws' },
         { name: 'REST API', iconClass: 'fa-solid fa-server' },
+        
     ],
   },
   {
@@ -44,6 +52,8 @@ const skillCategories = [
         { name: 'GitHub', iconClass: 'fa-brands fa-github' },
         { name: 'Linux', iconClass: 'fa-brands fa-linux' },
         { name: 'OpenCV', iconClass: 'fa-solid fa-camera-retro' },
+        { name: 'Netlify', iconClass: 'fa-brands fa-linux' },
+        { name: 'Render', iconClass: 'fa-solid fa-camera-retro' },
     ],
   },
 ];

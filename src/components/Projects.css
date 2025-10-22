@@ -89,6 +89,21 @@
     margin-bottom: 20px;
 }
 
+/* --- THIS IS THE NEW CODE YOU ASKED FOR --- */
+.project-github-link {
+    color: var(--primary-color); /* Makes it the same color */
+    margin-left: 10px;        /* Adds space between company and link */
+    text-decoration: none;
+    font-weight: 500;         /* Matches company font-weight */
+    font-size: 0.9em;         /* Makes it slightly smaller */
+}
+
+.project-github-link:hover {
+    text-decoration: underline; /* Adds underline on hover */
+}
+/* ------------------------------------------- */
+
+
 .accordion-content ul {
     list-style-type: none;
     padding-left: 0;
@@ -109,10 +124,11 @@
     font-weight: bold;
     font-size: 1.2rem;
 }
-/* src/components/Experience.css */
-/* ... keep all your existing styles ... */
 
+/* Media query from your original file */
 @media (max-width: 768px) {
+    /* These styles seem to be for Experience.css, 
+       but I'll leave them as you provided them. */
     .experience-timeline::before {
         left: 10px; /* Move line to the left */
     }
