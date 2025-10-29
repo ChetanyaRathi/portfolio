@@ -4,6 +4,32 @@ import './Projects.css'; // Make sure this file exists
 
 const projectsData = [
   {
+    role: 'Context-Driven Agentic RAG System ',
+    company: 'CuseHacks, Syracuse University',
+    
+    // --- LINK ADDED HERE ---
+    githubLink: 'https://github.com/vinaytiparadi/CuseAgenticRag', 
+
+    description: [
+      'Architected an intelligent, multi agent RAG system using python, Lang Chain and Lang Graph, featuring a Gemini-powered router that automatically delegates tasks to specialized agents for complex reasoning, simple retrieval.',
+      '•	Implemented advanced "Pre-Act" RAG for dynamic multi-step planning and "Corrective" RAG with document grading and real-time web search fallback, all powered by a Chroma DB vector store.',
+      
+    ],
+  },
+  {
+    role: 'Virtual AI Trainer ',
+    company: 'Personal Project',
+    
+    // --- LINK ADDED HERE ---
+    githubLink: 'https://github.com/ChetanyaRathi/Virtual-AI-Trainer', 
+
+    description: [
+      'Integrated Google Gemini (Vertex AI) to generate personalized insights and fitness recommendations, analyzing logged health data for actionable progress tracking%.',
+      'Integrated Designed interactive dashboards using Chart.js and optimized SQLite + SQL Alchemy storage, improving data visualization and user engagement by 45%.',
+      
+    ],
+  },
+  {
     role: 'Automated Grading System',
     company: 'EECS Hackathon, Syracuse University',
     

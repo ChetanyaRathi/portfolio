@@ -8,7 +8,8 @@ const skillCategories = [
   {
     title: 'Frontend & Web',
     skills: [
-        { name: 'React', iconClass: 'fa-brands fa-react' },
+        { name: 'Next.js', iconClass: 'fa-brands fa-react' },
+        { name: 'React.js', iconClass: 'fa-brands fa-react' },
         { name: 'JavaScript', iconClass: 'fa-brands fa-js-square' },
         { name: 'MERN Stack', iconClass: 'fa-brands fa-react' },
         { name: 'PHP', iconClass: 'fa-brands fa-php' },
@@ -24,6 +25,7 @@ const skillCategories = [
         { name: 'GenAI', iconClass: 'fa-brands fa-java' },
         { name: 'C++', iconClass: 'fa-solid fa-c' },
         { name: 'Node.js', iconClass: 'fa-brands fa-node-js' },
+        { name: 'Fast API', iconClass: 'fa-brands fa-node-js' },
         { name: 'Flask', iconClass: 'fa-brands fa-python' },
         { name: 'Java', iconClass: 'fa-brands fa-python' },
     ],
@@ -32,8 +34,7 @@ const skillCategories = [
     title: 'Databases & Cloud',
     skills: [
         { name: 'Google Cloud', iconClass: 'fa-brands fa-aws' },
-        { name: 'Gemini', iconClass: 'fa-brands fa-aws' },
-        { name: 'Vertex AI', iconClass: 'fa-solid fa-server' },
+        
         { name: 'OpenAI', iconClass: 'fa-solid fa-server' },
         { name: 'SQL', iconClass: 'fa-solid fa-database' },
         { name: 'MongoDB', iconClass: 'fa-solid fa-leaf' },
@@ -42,12 +43,20 @@ const skillCategories = [
         { name: 'AWS RDS', iconClass: 'fa-brands fa-aws' },
         { name: 'AWS Lambda', iconClass: 'fa-brands fa-aws' },
         { name: 'REST API', iconClass: 'fa-solid fa-server' },
+        { name: 'Gemini', iconClass: 'fa-brands fa-aws' },
+        { name: 'Chroma DB', iconClass: 'fa-solid fa-server' },
         
     ],
   },
   {
-    title: 'Tools & Other',
+    title: 'Gen AI Tools & Other',
     skills: [
+        { name: 'Lang Chain', iconClass: 'fa-brands fa-aws' },
+        { name: 'Lang Graph', iconClass: 'fa-solid fa-server' },
+        { name: 'Memori', iconClass: 'fa-brands fa-aws' },
+        
+        { name: 'Gemini', iconClass: 'fa-brands fa-aws' },
+        { name: 'Vertex AI', iconClass: 'fa-solid fa-server' },
         { name: 'Git', iconClass: 'fa-brands fa-git-alt' },
         { name: 'GitHub', iconClass: 'fa-brands fa-github' },
         { name: 'Linux', iconClass: 'fa-brands fa-linux' },

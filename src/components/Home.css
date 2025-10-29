@@ -190,6 +190,87 @@
     animation-delay: 1.5s;
 }
 
+.home-right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* This gap adds space between the image orb and the status box */
+  gap: 25px; 
+}
+
+
+/* === Status Box Styles === */
+
+.status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 0.8s ease-out 1.7s forwards;
+  opacity: 0;
+}
+
+.status-box {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Space between dot, first text, and second text */
+  background-color: var(--card-background); /* Using your theme variable */
+  border: 1px solid var(--primary-color);   /* Using your theme variable */
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: Arial, sans-serif; /* You can change this to your portfolio's font */
+
+  /* The blue glow effect */
+  box-shadow: 0 0 8px var(--primary-color), 0 0 12px var(--primary-color);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary-color); /* Using your theme variable */
+  border-radius: 50%;
+  
+  /* Glowing animation for the dot */
+  animation: pulse-animation 1.5s infinite;
+  box-shadow: 0 0 5px var(--primary-color), 0 0 8px var(--primary-color);
+}
+
+.status-text,
+.status-text-main {
+  display: flex;
+  flex-direction: column; /* Stacks the text vertically */
+}
+
+.text-line-one {
+  color: #ccd6f6; /* Lighter text color - adjust if you have a variable */
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.text-line-two {
+  color: #ffffff; /* Main text color */
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* Animation keyframes for the glowing dot */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(0.95);
+    /* Assuming your primary color is a teal/cyan like rgba(100, 255, 218) */
+    box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(100, 255, 218, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+  }
+}
+
+
 @media (max-width: 992px) {
     .home-container {
         flex-direction: column-reverse;
@@ -223,3 +304,5 @@
         font-size: 2.2rem;
     }
 }
+
+

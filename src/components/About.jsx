@@ -13,13 +13,12 @@ const About = () => {
         </div>
         <div className="about-text">
           <p>
-            I am a passionate and driven Computer Science graduate student at <strong>Syracuse University</strong>. My journey into technology began with a Bachelor's degree in AI & Data Science, which sparked my interest in building intelligent and efficient software solutions.
+            I’m a passionate and results-driven Computer Science graduate student at Syracuse University, specializing in <strong>Generative AI, intelligent agent systems, and full-stack development.</strong>  My journey began with a Bachelor’s in Artificial Intelligence and Data Science, where I discovered my enthusiasm for building scalable, data-driven, and human-centric software.
           </p>
           <p>
-            Through my internships, I've had the opportunity to dive deep into full-stack development, contributing to real-world applications using the MERN stack and cloud platforms like AWS. From improving data management productivity by 40% at Main 10 to increasing user engagement by 35% on a wellness app at Hum Aspen, I've enjoyed tackling challenges that deliver measurable impact.
-          </p>
+Through hands-on experience at <strong>Main 10</strong> and <strong>Hum Aspen Wellness</strong>, I’ve engineered end to end AI powered solutions, from automating cloud workflows using <strong>AWS Lambda</strong> and <strong>FastAPI</strong>  to integrating <strong>LLM-driven insights</strong>  that increased user engagement by 35%. I enjoy transforming complex technical challenges into seamless digital experiences that deliver measurable impact.          </p>
           <p>
-            Beyond the code, I am fascinated by the potential of machine learning and enjoy working on projects that involve complex problem-solving. I am driven by the challenge of turning innovative ideas into impactful digital experiences.
+            Currently, I’m exploring how <strong>LangChain, LangGraph, RAG architectures, and vector databases</strong> can power the next generation of context-aware applications. I’m motivated by innovation and the belief that intelligent systems should not only be smart, but meaningful, efficient, and user-focused.
           </p>
         </div>
       </div>

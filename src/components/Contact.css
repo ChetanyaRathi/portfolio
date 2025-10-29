@@ -1,56 +1,128 @@
 /* src/components/Contact.css */
-#contact {
+
+.contact-section {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    padding: 120px 8% 60px; /* Adjust padding as needed */
+    background-color: var(--background-color); /* Ensure your global background color is used */
+    color: var(--text-color); /* Ensure your global text color is used */
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 1200px; /* Max width for content, adjust as per your site's design */
     text-align: center;
-    min-height: 80vh;
-    padding: 100px 8%;
 }
 
-#contact h2 {
-    font-size: 3rem;
-    margin-bottom: 15px;
+.contact-container h2 {
+    font-size: 2.8rem; /* Matches your h1 in Home section for consistency */
+    font-weight: 600;
+    margin-bottom: 50px; /* Space below the main "Contact" heading */
+    color: #ffffff; /* Or your preferred heading color */
 }
 
-.contact-tagline {
-    font-size: 1.2rem;
-    color: var(--text-color);
-    margin-bottom: 30px;
+.contact-content-wrapper {
+    display: flex;
+    justify-content: center; /* Center the columns */
+    align-items: flex-start; /* Align items to the top */
+    gap: 60px; /* Space between the two columns */
+    text-align: left; /* Reset text alignment for columns */
+    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
 }
 
-.contact-details {
-    margin-bottom: 30px;
+.contact-left-column {
+    flex: 1;
+    min-width: 300px; /* Minimum width before wrapping */
+    max-width: 500px; /* Adjust max-width as needed */
 }
 
-.contact-details p {
+.contact-hashtag {
+    font-size: 1.8rem; /* Larger for impact */
+    font-weight: 700;
+    color: var(--primary-color); /* Your primary theme color */
+    margin-bottom: 20px;
+}
+
+.contact-description {
     font-size: 1.1rem;
-    margin-bottom: 15px;
+    line-height: 1.7;
+    color: var(--text-color-light); /* Lighter text color for body */
 }
 
-.contact-details a {
+.contact-right-column {
+    flex: 0 0 auto; /* Don't grow, don't shrink, size based on content */
+    min-width: 280px; /* Minimum width for the card */
+    max-width: 350px; /* Adjust max-width as needed */
+}
+
+.message-card {
+    background-color: var(--card-background); /* Your card background color */
+    border: 1px solid var(--border-color); /* Or a slightly lighter border */
+    border-radius: 8px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.message-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffffff; /* White for card title */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-detail {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    color: var(--text-color-light); /* Lighter text for details */
+}
+
+.contact-detail:last-child {
+    margin-bottom: 0; /* No margin for the last item */
+}
+
+.contact-detail a {
+    color: var(--primary-color); /* Your primary theme color for links */
     text-decoration: none;
-    color: var(--text-color);
     transition: color 0.3s ease;
 }
 
-.contact-details a:hover {
-    color: var(--primary-color);
+.contact-detail a:hover {
+    color: #ffffff; /* White on hover */
+    text-decoration: underline;
 }
 
-.contact-socials {
-    display: flex;
-    gap: 25px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-content-wrapper {
+        flex-direction: column;
+        align-items: center; /* Center columns when stacked */
+        gap: 40px;
+    }
+
+    .contact-left-column,
+    .contact-right-column {
+        min-width: unset;
+        width: 90%; /* Take more width on small screens */
+        max-width: 500px; /* Keep max-width for readability */
+    }
+
+    .message-card {
+        width: 100%;
+    }
 }
 
-.contact-socials a {
-    color: var(--text-color);
-    font-size: 2rem;
-    transition: color 0.3s ease, transform 0.3s ease;
+/* Optional: Adjust global variables if they are not defined elsewhere */
+/*
+:root {
+  --background-color: #0d1224; 
+  --card-background: #182643;
+  --primary-color: #64ffda; 
+  --text-color: #e6e6e6;
+  --text-color-light: #a8b2d1;
+  --border-color: #2a3c63;
 }
-
-.contact-socials a:hover {
-    color: var(--primary-color);
-    transform: translateY(-5px);
-}
+*/
