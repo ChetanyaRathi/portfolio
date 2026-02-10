@@ -3,6 +3,22 @@ import React, { useState } from 'react';
 import './Projects.css'; // Make sure this file exists
 
 const projectsData = [
+
+  {
+    role: 'Real-Time IoT Threat Monitoring & Mitigation using Tiny LLMs ',
+    company: 'Personal Project',
+    
+    // --- LINK ADDED HERE ---
+
+    description: [
+      'Developed an intelligent Intrusion Detection System (IDS) by fine-tuning state-of-the-art "Tiny" LLMs (Qwen3-4B, Phi-3-mini, Gemma-3-270M) on the Edge-IIoTset dataset to secure resource-constrained IoT networks',
+      'Implemented Parameter-Efficient Fine-Tuning (PEFT) using Low-Rank Adaptation (LoRA) and 4-bit quantization via the Unsloth and Hugging Face TRL libraries, optimizing models for edge deployment on limited hardware.',
+      'Achieved 100% accuracy in binary classification and ~77% accuracy in complex multi-class attack scenarios, significantly outperforming traditional ML baselines like XGBoost (53.56%).',
+      'Engineered a novel mitigation generation module that maps detected threats to MITRE CAPEC security standards, delivering context-aware remediation strategies with a ROUGE-L quality score of 0.6211.',
+      'Built a preprocessing pipeline to serialize raw IoT sensor and protocol logs into structured textual narratives, enabling the model to leverage semantic reasoning for detecting sophisticated attacks.',
+      
+    ],
+  },
   {
     role: 'Context-Driven Agentic RAG System ',
     company: 'CuseHacks, Syracuse University',
@@ -11,11 +27,16 @@ const projectsData = [
     githubLink: 'https://github.com/vinaytiparadi/CuseAgenticRag', 
 
     description: [
-      'Architected an intelligent, multi agent RAG system using python, Lang Chain and Lang Graph, featuring a Gemini-powered router that automatically delegates tasks to specialized agents for complex reasoning, simple retrieval.',
-      '•	Implemented advanced "Pre-Act" RAG for dynamic multi-step planning and "Corrective" RAG with document grading and real-time web search fallback, all powered by a Chroma DB vector store.',
+      'Engineered a modular Agentic RAG framework using LangGraph to orchestrate three specialized autonomous agents (Corrective, Pre-Act, and Workflow), replacing static retrieval with dynamic, iterative problem-solving workflows.',
+      'Implemented a Pre-Act Agent capable of explicit multi-step planning and query decomposition for complex tasks, alongside a Corrective Agent that autonomously grades document relevance and triggers self-correction loops',
+      'Integrated ChromaDB for vector storage with real-time web search augmentation using Perplexity (for synthesis) and Tavily (for raw content extraction), ensuring responses are grounded in up-to-date external knowledge.',
+      'Developed an LLM-based routing mechanism utilizing Gemini 2.5 Flash Lite that achieved 97.96% accuracy in dynamically selecting optimal agent execution paths based on query intent and complexity.',
+      'Validated system performance using the DeepEval framework across 120 diverse test cases, achieving a 93% Faithfulness score and significantly reducing hallucinations compared to monolithic RAG baselines.',
       
     ],
   },
+  
+  
   {
     role: 'Virtual AI Trainer ',
     company: 'Personal Project',
