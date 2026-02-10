@@ -10,7 +10,7 @@ const Contact = () => {
           <div className="contact-left-column">
 
             <p className="contact-description">
-              I'm actively pursuing full-time opportunities in Software Development and AI / Machine Learning. 
+              I'm actively seeking full-time opportunities in Software Development and AI / Machine Learning. 
               Whether you're looking to discuss a project, explore potential collaborations, or just have a chat, 
               I'd be delighted to connect. Reach out anytime!
             </p>
