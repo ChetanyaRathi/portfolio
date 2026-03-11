@@ -57,6 +57,30 @@ const experienceData = [
 
 const projectsData = [
   {
+    title: 'WhatsApp Mimic RAG Agent',
+    category: 'Gen AI',
+    image: projWhatsapp,
+    description: 'Autonomous WhatsApp AI agent that mimics your texting style using RAG with ChromaDB semantic search on real chat exports. Per-contact personality tuning, group chat support, and Gemini 2.5 Flash generation with natural typing delays and OTP safety guards.',
+    techs: ['FastAPI', 'ChromaDB', 'Gemini', 'Node.js', 'whatsapp-web.js'],
+    github: 'https://github.com/ChetanyaRathi/WhatsappMiniRAG',
+  },
+  {
+    title: 'Autonomous Job Hunter',
+    category: 'Full Stack',
+    image: projJobhunter,
+    description: 'AI-powered job search dashboard that scrapes listings via Serper API, parses descriptions with Gemini, and scores matches based on skills, experience level, and visa sponsorship. Features a Flask web UI with real-time search pipeline and automated HTML email digests.',
+    techs: ['Flask', 'Gemini', 'Serper API', 'SQLite', 'SMTP'],
+    github: 'https://github.com/ChetanyaRathi/Autonomous-Job-Hunter',
+  },
+  {
+    title: 'Resume Tailor',
+    category: 'AI Tool',
+    image: projResume,
+    description: 'AI resume optimizer that tailors bullet points to match job descriptions using Gemini 2.5 Pro. Parses PDF/DOCX resumes, identifies top ATS keywords, and naturally injects them while preserving original structure, metrics, and word count. Available as CLI, web app, and Chrome extension.',
+    techs: ['Gemini 2.5 Pro', 'Node.js', 'Express', 'Puppeteer', 'Chrome Extension'],
+    github: 'https://github.com/ChetanyaRathi/Resume_tailor',
+  },
+  {
     title: 'Context-Driven Agentic RAG',
     category: 'AI / ML',
     image: projAiMl,
@@ -103,30 +127,6 @@ const projectsData = [
     description: 'Intelligent chatbot answering personalized questions about resume and experience using LangChain, Vertex AI, and ChromaDB for semantic retrieval.',
     techs: ['LangChain', 'Vertex AI', 'ChromaDB', 'Python'],
     github: 'https://github.com/ChetanyaRathi/LenoxAI-ChatBot',
-  },
-  {
-    title: 'WhatsApp Mimic RAG Agent',
-    category: 'Gen AI',
-    image: projWhatsapp,
-    description: 'Autonomous WhatsApp AI agent that mimics your texting style using RAG with ChromaDB semantic search on real chat exports. Per-contact personality tuning, group chat support, and Gemini 2.5 Flash generation with natural typing delays and OTP safety guards.',
-    techs: ['FastAPI', 'ChromaDB', 'Gemini', 'Node.js', 'whatsapp-web.js'],
-    github: 'https://github.com/ChetanyaRathi/WhatsappMiniRAG',
-  },
-  {
-    title: 'Autonomous Job Hunter',
-    category: 'Full Stack',
-    image: projJobhunter,
-    description: 'AI-powered job search dashboard that scrapes listings via Serper API, parses descriptions with Gemini, and scores matches based on skills, experience level, and visa sponsorship. Features a Flask web UI with real-time search pipeline and automated HTML email digests.',
-    techs: ['Flask', 'Gemini', 'Serper API', 'SQLite', 'SMTP'],
-    github: 'https://github.com/ChetanyaRathi/Autonomous-Job-Hunter',
-  },
-  {
-    title: 'Resume Tailor',
-    category: 'AI Tool',
-    image: projResume,
-    description: 'AI resume optimizer that tailors bullet points to match job descriptions using Gemini 2.5 Pro. Parses PDF/DOCX resumes, identifies top ATS keywords, and naturally injects them while preserving original structure, metrics, and word count. Available as CLI, web app, and Chrome extension.',
-    techs: ['Gemini 2.5 Pro', 'Node.js', 'Express', 'Puppeteer', 'Chrome Extension'],
-    github: 'https://github.com/ChetanyaRathi/Resume_tailor',
   },
 ];
 
