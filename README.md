@@ -4,7 +4,7 @@
 
 **A modern, dark-themed developer portfolio built with React, Framer Motion, and Lenis smooth scroll.**
 
-[Live Demo](https://chetanyarathi.github.io/portfolio) · [LinkedIn](https://linkedin.com/in/chetanya-rathi) · [GitHub](https://github.com/ChetanyaRathi)
+[Live Demo]([https://chetanyarathi.github.io/portfolio](https://chetanyarathi-portfolio.netlify.app/)) · [LinkedIn](https://linkedin.com/in/chetanya-rathi) · [GitHub](https://github.com/ChetanyaRathi)
 
 </div>
 
