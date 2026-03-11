@@ -9,6 +9,9 @@ import projGrading from './assets/project-grading.png';
 import projBert from './assets/project-bert.png';
 import projFitness from './assets/project-fitness.png';
 import projChatbot from './assets/project-chatbot.png';
+import projWhatsapp from './assets/project-whatsapp.png';
+import projJobhunter from './assets/project-jobhunter.png';
+import projResume from './assets/project-resume.png';
 
 // ═══════════════════════════════════════════════════════════════
 //  DATA
@@ -101,6 +104,30 @@ const projectsData = [
     techs: ['LangChain', 'Vertex AI', 'ChromaDB', 'Python'],
     github: 'https://github.com/ChetanyaRathi/LenoxAI-ChatBot',
   },
+  {
+    title: 'WhatsApp Mimic RAG Agent',
+    category: 'Gen AI',
+    image: projWhatsapp,
+    description: 'Autonomous WhatsApp AI agent that mimics your texting style using RAG with ChromaDB semantic search on real chat exports. Per-contact personality tuning, group chat support, and Gemini 2.5 Flash generation with natural typing delays and OTP safety guards.',
+    techs: ['FastAPI', 'ChromaDB', 'Gemini', 'Node.js', 'whatsapp-web.js'],
+    github: 'https://github.com/ChetanyaRathi/WhatsappMiniRAG',
+  },
+  {
+    title: 'Autonomous Job Hunter',
+    category: 'Full Stack',
+    image: projJobhunter,
+    description: 'AI-powered job search dashboard that scrapes listings via Serper API, parses descriptions with Gemini, and scores matches based on skills, experience level, and visa sponsorship. Features a Flask web UI with real-time search pipeline and automated HTML email digests.',
+    techs: ['Flask', 'Gemini', 'Serper API', 'SQLite', 'SMTP'],
+    github: 'https://github.com/ChetanyaRathi/Autonomous-Job-Hunter',
+  },
+  {
+    title: 'Resume Tailor',
+    category: 'AI Tool',
+    image: projResume,
+    description: 'AI resume optimizer that tailors bullet points to match job descriptions using Gemini 2.5 Pro. Parses PDF/DOCX resumes, identifies top ATS keywords, and naturally injects them while preserving original structure, metrics, and word count. Available as CLI, web app, and Chrome extension.',
+    techs: ['Gemini 2.5 Pro', 'Node.js', 'Express', 'Puppeteer', 'Chrome Extension'],
+    github: 'https://github.com/ChetanyaRathi/Resume_tailor',
+  },
 ];
 
 const skillCategories = [
@@ -136,7 +163,10 @@ const aiResponses = {
   bert_project: "The AI Text Detection project deployed a BERT-based classifier that distinguishes AI-generated text from human-written text with 96.81% accuracy using advanced preprocessing, tokenization, and fine-tuning techniques.",
   trainer_project: "The Virtual AI Trainer integrates Google Gemini (Vertex AI) for personalized fitness insights with interactive Chart.js dashboards and SQLite storage, improving user engagement by 45%.",
   chatbot_project: "Lenox AI Chatbot answers personalized questions about Chetanya's resume using LangChain, Vertex AI, and ChromaDB for semantic retrieval and accurate query matching.",
-  projects: "Chetanya has 8+ projects: Agentic RAG (93% Faithfulness), IoT Threat Detection (100% accuracy), Automated Grading System (Hackathon Winner), AI Text Detection (96.81% BERT), Virtual AI Trainer, Lenox AI Chatbot, Computer Activity Logging System, and Voice Cloning & Forgery Detection. Ask about any specific project!",
+  whatsapp_project: "WhatsApp Mimic RAG Agent is an autonomous AI that replies on WhatsApp on your behalf by learning your texting style from real chat exports. Uses ChromaDB for semantic search, Gemini 2.5 Flash for generation, with per-contact personality tuning, group chat support, typing delays, and OTP safety guards.",
+  jobhunter_project: "Autonomous Job Hunter is an AI-powered job search dashboard that scrapes listings via Serper API, parses descriptions with Gemini, and scores matches based on skills, experience, and visa sponsorship. Features a Flask web UI with real-time pipeline and automated HTML email digests.",
+  resume_project: "Resume Tailor uses Gemini 2.5 Pro to optimize resumes for specific job descriptions. It parses PDF/DOCX, identifies top ATS keywords, and naturally injects them while preserving structure and word count. Available as CLI, web app, and Chrome extension.",
+  projects: "Chetanya has 8+ projects: Agentic RAG, IoT Threat Detection, Automated Grading System, AI Text Detection, Virtual AI Trainer, Lenox AI Chatbot, WhatsApp Mimic RAG Agent, Autonomous Job Hunter, and Resume Tailor. Ask about any specific project!",
   contact: "You can reach Chetanya at rathi.chetanya@gmail.com. LinkedIn: linkedin.com/in/chetanya-rathi | GitHub: github.com/ChetanyaRathi",
   default: "I can answer questions about Chetanya's education, skills, internships (Main 10, Hum Aspen), projects (RAG, IoT, Grading System, BERT, etc.), or how to contact him. What would you like to know?",
 };
@@ -155,6 +185,9 @@ const getAIResponse = (msg) => {
   if (['bert','text detection','ai text','ai generated'].some(w => m.includes(w))) return aiResponses.bert_project;
   if (['trainer','fitness','virtual ai','chart.js'].some(w => m.includes(w))) return aiResponses.trainer_project;
   if (['lenox','chatbot','resume bot'].some(w => m.includes(w))) return aiResponses.chatbot_project;
+  if (['whatsapp','mimic','texting style','autonomous agent'].some(w => m.includes(w))) return aiResponses.whatsapp_project;
+  if (['job hunt','job search','serper','job dashboard'].some(w => m.includes(w))) return aiResponses.jobhunter_project;
+  if (['resume tailor','tailor','ats','chrome extension'].some(w => m.includes(w))) return aiResponses.resume_project;
   // Broader categories
   if (['experience','work','intern','job','professional'].some(w => m.includes(w))) return aiResponses.experience;
   if (['edu','university','degree','college','syracuse','vit','pune','studying','school'].some(w => m.includes(w))) return aiResponses.education;
