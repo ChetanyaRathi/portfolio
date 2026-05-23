@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
-import profilePic from './assets/profile.png';
 import aboutPhoto from './assets/about-photo.png';
+import profilePic from './assets/profile.png';
 import projAiMl from './assets/project-ai-ml.png';
 import projIot from './assets/project-iot.png';
 import projGrading from './assets/project-grading.png';
@@ -12,6 +13,13 @@ import projChatbot from './assets/project-chatbot.png';
 import projWhatsapp from './assets/project-whatsapp.png';
 import projJobhunter from './assets/project-jobhunter.png';
 import projResume from './assets/project-resume.png';
+import profileGrad from './assets/profile-grad.jpg';
+import flairs1 from './assets/flairs-1.jpg';
+import flairs2 from './assets/flairs-2.jpg';
+import flairs3 from './assets/flairs-3.jpg';
+import flairs4 from './assets/flairs-4.jpg';
+import ResumeChatbot from './components/ResumeChatbot';
+import { getAIResponse } from './utils/chatbotLogic';
 
 // ═══════════════════════════════════════════════════════════════
 //  DATA
@@ -23,6 +31,49 @@ const titles = [
   'Generative AI Specialist',
   'LLM Agent Architect',
 ];
+
+
+const highlightKeywords = (text) => {
+  if (typeof text !== 'string') return text;
+  
+  const keywords = [
+
+    'React.js', 'Node.js', 'MongoDB', 'LangChain', 'production-ready', '15k+ queries/month', 
+    '55%', 'semantic search', 'hybrid reranking', 'RESTful APIs', 'asynchronous processing architecture', 
+    'AWS Lambda', 'S3', 'SQS', 'maintenance workflows', 'API response times', '85%', '12s → 1.8s', 
+    '600+ operations', 'eliminating bottlenecks', 'FastAPI', 'standardizing execution', 'reducing handoffs', 
+    'routine maintenance operations', 'improving cross-team collaboration efficiency', 'RAG', 
+    'Gemini 2.5 flash', 'gemini-embedding-001', 'ChatGPT APIs', 'with retrieved historical context', 
+    'accelerating incident diagnosis', 'LLM-driven', 'Gemini API', 'GCP infrastructure with Terraform (IaC)', 
+    'Jenkins', 'test, build, container push, and deployment workflows', 'intelligent health copilot', 
+    '30% faster data processing', '350+ test cases', 'containerized environments', '30+ critical defects', 
+    '30%', 'Docker', 'DeepAnalyze-8B', 'GCP L4 GPU', 'Gemini Flash', 'Analyze-Code-Execute loop', 
+    'AST validation', 'inference pipeline', 'automated HTML report generation', 'hybrid LLM routing', 
+    'Pandas-based statistical analysis', 'self-correcting retry loops', 'LangGraph and LangChain', 'LangGraph', 
+    'Gemini', 'reasoning accuracy by 30%', 'advanced Pre-Act RAG', 'Corrective RAG', 'ChromaDB', 
+    'reducing hallucinations by 25%', 'Tiny LLMs', 'Qwen3-4B', 'Gemma-3-270M', 'Phi-3-mini', 'Edge-IIoTset', 
+    'real-time IoT threat classification and mitigation', 'end-to-end fine-tuning and evaluation pipeline', 
+    'FLAIRS-39', 'GenAI-driven', 'WaveGAN and SpecGAN', 'WaveGAN', 'SpecGAN', 'synthetic audio patterns', 
+    'deep generative models', '22% improvement', 'automated audio deepfake detection accuracy', 
+    'AI-driven voice integrity analysis', 'IEEE research paper',
+    'MERN Stack', 'Serper API', 'SQLite', 'SMTP', 'Gemini 2.5 Pro', 'Puppeteer', 'Perplexity API', 'Qwen3', 
+    'Phi-3', 'LoRA', 'MITRE CAPEC', 'Flask', 'NLP', 'Scikit-Learn', 'BERT', 'Transformers', 'Google Gemini', 
+    'Vertex AI', 'Chart.js', 'MediaPipe', 'OpenCV', 'React', 'Tailwind CSS', 'Pinecone', 'Next.js', 'PostgreSQL', 
+    '93% Faithfulness score', '100% binary classification accuracy', '60% improvement', '96.81% accuracy'
+
+  ];
+  
+  let html = text;
+  const sortedKeywords = [...keywords].sort((a, b) => b.length - a.length);
+  
+  sortedKeywords.forEach(kw => {
+    const escapedKw = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(^|\\W)(${escapedKw})($|\\W)`, 'gi');
+    html = html.replace(regex, '$1<strong style="color: var(--text); font-weight: 600;">$2</strong>$3');
+  });
+  
+  return html;
+};
 
 const heroTechs = ['Python', 'React', 'FastAPI', 'LangChain', 'LangGraph', 'AWS', 'RAG'];
 
@@ -55,7 +106,51 @@ const experienceData = [
   },
 ];
 
+const researchData = [
+  {
+    title: 'An Iterative Self-Correcting Agentic RAG System',
+    event: 'Accepted at FLAIRS-39 (Main Track)',
+    category: 'Research / AI',
+    image: projAiMl,
+    description: 'Developed an advanced LangGraph framework orchestrating Corrective, Pre-Act, and Workflow agents for highly accurate information retrieval. Integrated ChromaDB and Perplexity API to validate and self-correct retrieved contexts in real-time. Achieved a 93% Faithfulness score across 120 rigorous test cases, demonstrating robust reasoning capabilities.',
+    techs: ['LangGraph', 'ChromaDB', 'Python', 'FastAPI', 'Gemini'],
+    links: [
+      { text: 'View Paper', url: '#' }
+    ]
+  },
+  {
+    title: 'Automated IoT Threat Monitoring & Mitigation using Tiny LLMs',
+    event: 'Accepted at FLAIRS-39 (Poster Track)',
+    category: 'Research / Security',
+    image: projIot,
+    description: 'Engineered a lightweight, edge-compatible security solution by fine-tuning Tiny LLMs (Qwen3 & Phi-3) using LoRA techniques on the Edge-IIoTset dataset. The model achieved 100% binary classification accuracy in identifying anomalous network traffic. Autonomously generates actionable remediation strategies mapped directly to MITRE CAPEC standards.',
+    techs: ['PyTorch', 'LoRA', 'Unsloth', 'HuggingFace', 'MITRE'],
+    links: [
+      { text: 'View Paper', url: '#' }
+    ]
+  },
+  {
+    title: 'Voice Cloning and Forgery Detection Using WaveGAN and SpecGAN',
+    event: 'IEEE Publication',
+    category: 'Research / AI',
+    image: projAiMl,
+    description: 'This paper presents a comparative analysis of DCGAN, WaveGAN, and SpecGAN for voice cloning and forgery detection, with experimental results showing SpecGAN outperforms the others in generating high-quality synthetic voice samples. It proposes an audio forgery detection method combining copy-move forgery detection, CQSS-GA-SVM analysis, and SpecGAN-based detection, achieving 98% accuracy in identifying synthetic voices.',
+    techs: ['WaveGAN', 'SpecGAN', 'DCGAN', 'SVM', 'Python'],
+    links: [
+      { text: 'View Paper', url: 'https://ieeexplore.ieee.org/document/10392082' }
+    ]
+  },
+];
+
 const projectsData = [
+  {
+    title: 'Agentic Data Analyst',
+    category: 'Gen AI',
+    image: projAiMl,
+    description: 'Architected an agentic data analysis system using DeepAnalyze-8B deployed on a GCP L4 GPU instance as the specialist worker, with Gemini Flash supervising routing decisions and orchestrating an Analyze-Code-Execute loop with AST validation. Containerized the inference pipeline with Docker, exposed via FastAPI for low-latency querying, and integrated automated HTML report generation across hybrid LLM routing with self-correcting retry loops.',
+    techs: ['DeepAnalyze-8B', 'Gemini Flash', 'GCP', 'FastAPI', 'Docker'],
+    github: null,
+  },
   {
     title: 'WhatsApp Mimic RAG Agent',
     category: 'Gen AI',
@@ -81,34 +176,10 @@ const projectsData = [
     github: 'https://github.com/ChetanyaRathi/Resume_tailor',
   },
   {
-    title: 'Context-Driven Agentic RAG',
-    category: 'AI / ML',
-    image: projAiMl,
-    description: 'LangGraph framework orchestrating Corrective, Pre-Act, and Workflow agents. Integrated ChromaDB + Perplexity API with 93% Faithfulness score across 120 test cases.',
-    techs: ['LangGraph', 'ChromaDB', 'Python', 'FastAPI', 'Gemini'],
-    github: 'https://github.com/vinaytiparadi/CuseAgenticRag',
-  },
-  {
-    title: 'IoT Threat Monitoring with Tiny LLMs',
-    category: 'Research',
-    image: projIot,
-    description: 'Fine-tuned Qwen3 & Phi-3 using LoRA on Edge-IIoTset dataset. Achieved 100% binary classification accuracy and generated MITRE CAPEC remediation strategies.',
-    techs: ['PyTorch', 'LoRA', 'Unsloth', 'HuggingFace', 'MITRE'],
-    github: null,
-  },
-  {
-    title: 'Automated Grading System',
-    category: 'Hackathon Winner',
-    image: projGrading,
-    description: 'Award-winning Flask app reducing manual grading time by 60% via NLP. Processed 500+ submissions in real-time with web-scraped faculty matching.',
-    techs: ['Flask', 'NLP', 'Python', 'Web Scraping'],
-    github: 'https://github.com/ChetanyaRathi/syracuse-ecs-challenege',
-  },
-  {
     title: 'AI Text Detection (BERT)',
     category: 'Deep Learning',
     image: projBert,
-    description: 'BERT-based classifier distinguishing AI vs Human text with 96.81% accuracy via advanced fine-tuning on multi-source data.',
+    description: 'Developed a BERT-based classifier distinguishing AI vs Human text with 96.81% accuracy. Achieved robust performance via advanced fine-tuning on multi-source datasets.',
     techs: ['BERT', 'Transformers', 'Python', 'NLP'],
     github: null,
   },
@@ -124,10 +195,20 @@ const projectsData = [
     title: 'Lenox AI Chatbot',
     category: 'AI',
     image: projChatbot,
-    description: 'Intelligent chatbot answering personalized questions about resume and experience using LangChain, Vertex AI, and ChromaDB for semantic retrieval.',
+    description: 'Engineered an intelligent chatbot answering personalized questions about resume and experience. Built using LangChain, Vertex AI, and ChromaDB for efficient semantic retrieval.',
     techs: ['LangChain', 'Vertex AI', 'ChromaDB', 'Python'],
     github: 'https://github.com/ChetanyaRathi/LenoxAI-ChatBot',
-  },
+  }
+];
+
+const hackathonData = [
+  {
+    title: 'Automated Grading System',
+    event: 'Won the Syracuse University EECS Hackathon in March 2025',
+    description: 'Engineered an automated grading application utilizing Natural Language Processing (NLP) to intelligently evaluate and score text-based academic submissions. Developed a robust Flask backend to manage data processing pipelines, handle user submissions, and seamlessly integrate the NLP evaluation engine. Streamlined traditional manual assessment workflows, successfully driving a 60% improvement in overall grading efficiency. Secured a top award at the university-wide hackathon, recognized for technical execution, system architecture, and practical utility.',
+    techs: ['Python', 'Flask', 'NLP', 'Scikit-Learn'],
+    github: 'https://github.com/ChetanyaRathi/syracuse-ecs-challenege',
+  }
 ];
 
 const skillCategories = [
@@ -147,56 +228,6 @@ const proficiency = [
   { name: 'AWS / GCP', pct: 75 },
   { name: 'MongoDB / SQL', pct: 80 },
 ];
-
-// AI Assistant responses
-const aiResponses = {
-  greeting: "Hello! I'm Chetanya's AI assistant. Ask me about his education, skills, projects, experience, or anything else!",
-  summary: "Chetanya Rathi is a results-driven Software Engineer currently pursuing his MS in Computer Science at Syracuse University, NY. He specializes in Generative AI, LLM applications, intelligent agent systems, and full-stack development. He has hands-on experience building RAG pipelines, LangChain/LangGraph architectures, and AI-integrated solutions using Python, FastAPI, and React.",
-  education: "Chetanya is pursuing his MS in Computer Science at Syracuse University, New York (expected May 2026). He completed his B.Tech in AI & Data Science from Vishwakarma Institute of Technology (VIT), Pune, India.",
-  main10: "At Main 10 (Jan–Aug 2024), Chetanya worked as a Software Engineering Intern in AI & Automation. He built a production-ready maintenance knowledge retrieval system using MERN Stack and LangChain handling 15k+ queries/month. He also implemented async processing with AWS Lambda/S3/SQS improving API response times by 85%, and engineered a RAG pipeline using Gemini 2.5 flash and ChatGPT APIs for automated alerts.",
-  humaspen: "At Hum Aspen Wellness (Jan–Dec 2023), Chetanya worked as a Full Stack Generative AI Engineer Intern. He embedded LLM-driven insights into the Now Zone Life wellness app using LangChain and Gemini API, integrated RAG pipelines improving personalization by 50%, and deployed adaptive AI modules that transformed the app into an intelligent health copilot. He also created 350+ test cases identifying 30+ critical defects.",
-  experience: "Chetanya has two internships: (1) Main 10 — Software Engineering Intern in AI & Automation (Jan–Aug 2024) where he built a maintenance knowledge retrieval system with LangChain handling 15k+ queries/month. (2) Hum Aspen Wellness — Full Stack Gen AI Engineer Intern (Jan–Dec 2023) where he integrated RAG pipelines and LLM-powered insights into a wellness app. Ask about 'Main 10' or 'Hum Aspen' for details!",
-  skills: "His technical stack includes: Languages (Python, C++, JavaScript, Java), Frontend (React, Next.js, Tailwind), Backend (FastAPI, Flask, Node.js), Databases (MongoDB, PostgreSQL, ChromaDB, Redis), AI/ML (LangChain, LangGraph, RAG, OpenAI, Gemini, Vertex AI, BERT), and Cloud (AWS S3/Lambda/RDS, Docker, Google Cloud).",
-  rag_project: "The Context-Driven Agentic RAG System was built at CuseHacks, Syracuse University. It uses LangGraph to orchestrate 3 agents (Corrective, Pre-Act, Workflow). Integrated ChromaDB + Perplexity API with Gemini 2.5 Flash Lite achieving 97.96% routing accuracy and 93% Faithfulness score across 120 test cases.",
-  iot_project: "The IoT Threat Monitoring project fine-tuned Tiny LLMs (Qwen3-4B, Phi-3-mini) using LoRA on the Edge-IIoTset dataset for IoT security. It achieved 100% binary classification accuracy and ~77% multi-class accuracy, outperforming XGBoost (53.56%). It also generates remediation strategies mapped to MITRE CAPEC standards.",
-  grading_project: "The Automated Grading System won first place at the EECS Hackathon at Syracuse University. It reduced manual grading time by 60% using NLP and constraint-based scheduling, processing 500+ submissions in real-time with web-scraped faculty matching.",
-  bert_project: "The AI Text Detection project deployed a BERT-based classifier that distinguishes AI-generated text from human-written text with 96.81% accuracy using advanced preprocessing, tokenization, and fine-tuning techniques.",
-  trainer_project: "The Virtual AI Trainer integrates Google Gemini (Vertex AI) for personalized fitness insights with interactive Chart.js dashboards and SQLite storage, improving user engagement by 45%.",
-  chatbot_project: "Lenox AI Chatbot answers personalized questions about Chetanya's resume using LangChain, Vertex AI, and ChromaDB for semantic retrieval and accurate query matching.",
-  whatsapp_project: "WhatsApp Mimic RAG Agent is an autonomous AI that replies on WhatsApp on your behalf by learning your texting style from real chat exports. Uses ChromaDB for semantic search, Gemini 2.5 Flash for generation, with per-contact personality tuning, group chat support, typing delays, and OTP safety guards.",
-  jobhunter_project: "Autonomous Job Hunter is an AI-powered job search dashboard that scrapes listings via Serper API, parses descriptions with Gemini, and scores matches based on skills, experience, and visa sponsorship. Features a Flask web UI with real-time pipeline and automated HTML email digests.",
-  resume_project: "Resume Tailor uses Gemini 2.5 Pro to optimize resumes for specific job descriptions. It parses PDF/DOCX, identifies top ATS keywords, and naturally injects them while preserving structure and word count. Available as CLI, web app, and Chrome extension.",
-  projects: "Chetanya has 8+ projects: Agentic RAG, IoT Threat Detection, Automated Grading System, AI Text Detection, Virtual AI Trainer, Lenox AI Chatbot, WhatsApp Mimic RAG Agent, Autonomous Job Hunter, and Resume Tailor. Ask about any specific project!",
-  contact: "You can reach Chetanya at rathi.chetanya@gmail.com. LinkedIn: linkedin.com/in/chetanya-rathi | GitHub: github.com/ChetanyaRathi",
-  default: "I can answer questions about Chetanya's education, skills, internships (Main 10, Hum Aspen), projects (RAG, IoT, Grading System, BERT, etc.), or how to contact him. What would you like to know?",
-};
-
-const getAIResponse = (msg) => {
-  const m = msg.toLowerCase();
-  // Greetings
-  if (['hi','hello','hey','greetings','sup','yo'].some(w => m.includes(w))) return aiResponses.greeting;
-  // Specific companies
-  if (['main 10','main10','maintenance'].some(w => m.includes(w))) return aiResponses.main10;
-  if (['hum aspen','wellness','now zone'].some(w => m.includes(w))) return aiResponses.humaspen;
-  // Specific projects
-  if (['agentic','cusehacks','langgraph'].some(w => m.includes(w))) return aiResponses.rag_project;
-  if (['iot','threat','qwen','phi-3','edge-iiot'].some(w => m.includes(w))) return aiResponses.iot_project;
-  if (['grading','eecs','hackathon','award'].some(w => m.includes(w))) return aiResponses.grading_project;
-  if (['bert','text detection','ai text','ai generated'].some(w => m.includes(w))) return aiResponses.bert_project;
-  if (['trainer','fitness','virtual ai','chart.js'].some(w => m.includes(w))) return aiResponses.trainer_project;
-  if (['lenox','chatbot','resume bot'].some(w => m.includes(w))) return aiResponses.chatbot_project;
-  if (['whatsapp','mimic','texting style','autonomous agent'].some(w => m.includes(w))) return aiResponses.whatsapp_project;
-  if (['job hunt','job search','serper','job dashboard'].some(w => m.includes(w))) return aiResponses.jobhunter_project;
-  if (['resume tailor','tailor','ats','chrome extension'].some(w => m.includes(w))) return aiResponses.resume_project;
-  // Broader categories
-  if (['experience','work','intern','job','professional'].some(w => m.includes(w))) return aiResponses.experience;
-  if (['edu','university','degree','college','syracuse','vit','pune','studying','school'].some(w => m.includes(w))) return aiResponses.education;
-  if (['skill','tech','python','react','aws','langchain','rag','fastapi','flask','mongo','docker'].some(w => m.includes(w))) return aiResponses.skills;
-  if (['project','portfolio','build','made','created'].some(w => m.includes(w))) return aiResponses.projects;
-  if (['contact','email','phone','reach','hire','connect','linkedin','github'].some(w => m.includes(w))) return aiResponses.contact;
-  if (['about','who','summary','tell me','yourself','chetanya','him'].some(w => m.includes(w))) return aiResponses.summary;
-  return aiResponses.default;
-};
 
 // ═══════════════════════════════════════════════════════════════
 //  ANIMATION VARIANTS
@@ -226,39 +257,39 @@ const scaleIn = {
 
 // ---- Navigation ----
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About', href: '/#about' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 const Navigation = () => {
   const [active, setActive] = useState('#home');
   const [show, setShow] = useState(true);
   const lastY = useRef(0);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => {
-      // Auto-hide nav on scroll down
       const y = window.scrollY;
-      setShow(y < 100 || y < lastY.current);
+      const shouldShow = y < 100 || y < lastY.current;
+      setShow(shouldShow);
       lastY.current = y;
-
-      // Active section detection
-      const ids = ['home', 'about', 'experience', 'skills', 'projects', 'contact'];
-      for (let i = ids.length - 1; i >= 0; i--) {
-        const el = document.getElementById(ids[i]);
-        if (el && y >= el.offsetTop - 250) {
-          setActive('#' + ids[i]);
-          break;
-        }
-      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Set active section strictly based on pathname for non-home routes
+  useEffect(() => {
+    if (location.pathname === '/chatbot') {
+      setActive('/chatbot');
+    } else {
+      setActive('#home');
+    }
+  }, [location]);
 
   return (
     <motion.nav
@@ -267,17 +298,14 @@ const Navigation = () => {
       animate={{ y: show ? 0 : -80, opacity: show ? 1 : 0 }}
       transition={{ duration: 0.4 }}
     >
-      <a href="#home" className="nav-link" style={{ fontWeight: 700, color: '#7c5cfc', fontSize: '0.9rem' }}>CR</a>
+      <Link to="/" className="nav-link" style={{ fontWeight: 700, color: 'var(--accent)', fontSize: '0.9rem' }}>CR</Link>
       <span className="nav-divider" />
       {navItems.map((n) => (
-        <a
-          key={n.label}
-          href={n.href}
-          className={`nav-link ${active === n.href ? 'active' : ''}`}
-          onClick={() => setActive(n.href)}
-        >
-          {n.label}
-        </a>
+        n.href.startsWith('/#') ? (
+          <a key={n.label} href={n.href} className={`nav-link ${active === n.href.substring(1) ? 'active' : ''}`}>{n.label}</a>
+        ) : (
+          <Link key={n.label} to={n.href} className={`nav-link ${active === n.href ? 'active' : ''}`}>{n.label}</Link>
+        )
       ))}
     </motion.nav>
   );
@@ -305,18 +333,17 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ flexShrink: 0 }}
+            style={{ flexShrink: 0, width: '300px', height: '300px', borderRadius: '50%', overflow: 'hidden', border: '3px solid rgba(124,92,252,0.3)', boxShadow: '0 0 40px rgba(124,92,252,0.15)' }}
           >
             <img
-              src={profilePic}
+              src={profileGrad}
               alt="Chetanya Rathi"
               style={{
-                width: '300px',
-                height: '300px',
-                borderRadius: '50%',
+                width: '100%',
+                height: '100%',
                 objectFit: 'cover',
-                border: '3px solid rgba(124,92,252,0.3)',
-                boxShadow: '0 0 40px rgba(124,92,252,0.15)',
+                transform: 'scale(1.45)',
+                transformOrigin: 'center 25%',
               }}
             />
           </motion.div>
@@ -429,13 +456,11 @@ const AboutSection = () => (
   <section id="about" style={{ padding: '100px 24px', position: 'relative', zIndex: 1 }}>
     <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}>
-
-        <motion.span variants={fadeUp} className="section-label">About Me</motion.span>
         <motion.h2 variants={fadeUp} custom={1} className="section-heading">
           Building the future with <br />intelligent systems
         </motion.h2>
         <motion.p variants={fadeUp} custom={2} className="section-sub" style={{ marginBottom: '48px' }}>
-          Passionate CS grad student at Syracuse University, NY with a focus on AI/ML and scalable software.
+          Recent CS Master's grad from Syracuse University, NY, focused on AI/ML and scalable software.
         </motion.p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', marginBottom: '48px' }}>
@@ -447,15 +472,15 @@ const AboutSection = () => (
           {/* Story */}
           <motion.div variants={fadeUp} custom={4} className="glass" style={{ padding: '32px' }}>
             <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '16px' }}>My Story</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', color: '#aaa', fontSize: '0.95rem', lineHeight: 1.7 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', color: 'var(--text-dim)', fontSize: '0.95rem', lineHeight: 1.7 }}>
               <p>
-                I'm a Computer Science graduate student at Syracuse University, New York, specializing in <strong style={{ color: '#f0f0f5' }}>Generative AI, intelligent agent systems, and full-stack development.</strong> My journey began with a B.Tech in AI & Data Science from Vishwakarma Institute of Technology, Pune, India.
+                I'm Chetanya, a Computer Science graduate student at Syracuse University, New York. I did my undergrad in AI and Data Science at Vishwakarma Institute of Technology, Pune.
               </p>
               <p>
-                Through internships at <strong style={{ color: '#f0f0f5' }}>Main 10</strong> and <strong style={{ color: '#f0f0f5' }}>Hum Aspen Wellness</strong>, I've engineered end-to-end AI solutions — from automating cloud workflows with AWS Lambda to integrating LLM-driven insights that boosted user engagement by 35%.
+                I love building things with AI. Over nearly two years of internships at <strong style={{ color: 'var(--text)' }}>Main 10</strong> and <strong style={{ color: 'var(--text)' }}>Hum Aspen Wellness</strong>, I've worked across the full AI stack. This includes designing <strong style={{ color: 'var(--text)' }}>RAG</strong> pipelines, deploying LLM-powered features to production, and building cloud workflows on AWS and GCP. I've also presented one full paper and one poster at <strong style={{ color: 'var(--text)' }}>FLAIRS-39</strong>.
               </p>
               <p>
-                Currently exploring how <strong style={{ color: '#f0f0f5' }}>LangChain, LangGraph, RAG architectures, and vector databases</strong> can power the next generation of context-aware applications.
+                Right now, I'm focused on Generative AI and agentic systems. I spend most of my time working with <strong style={{ color: 'var(--text)' }}>LangChain, LangGraph, RAG, and vector databases</strong>, basically figuring out how to make LLMs actually useful in everyday applications.
               </p>
             </div>
 
@@ -481,9 +506,7 @@ const AboutSection = () => (
 const ExperienceSection = () => (
   <section id="experience" style={{ padding: '100px 24px', position: 'relative', zIndex: 1 }}>
     <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}>
-        <motion.span variants={fadeUp} className="section-label">Experience</motion.span>
-        <motion.h2 variants={fadeUp} custom={1} className="section-heading">Where I've worked</motion.h2>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}>        <motion.h2 variants={fadeUp} custom={1} className="section-heading">Where I've worked</motion.h2>
         <motion.p variants={fadeUp} custom={2} className="section-sub" style={{ marginBottom: '48px' }}>
           Building real-world AI systems at scale.
         </motion.p>
@@ -509,7 +532,7 @@ const ExperienceSection = () => (
                 </div>
                 <ul style={{ paddingLeft: '18px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {exp.bullets.map((b, j) => (
-                    <li key={j} style={{ color: '#aaa', fontSize: '0.88rem', lineHeight: 1.65 }}>{b}</li>
+                    <li key={j} style={{ color: '#aaa', fontSize: '0.88rem', lineHeight: 1.65 }} dangerouslySetInnerHTML={{ __html: highlightKeywords(b) }} />
                   ))}
                 </ul>
               </div>
@@ -534,42 +557,20 @@ const SkillsSection = () => {
           viewport={{ once: true, margin: '-80px' }}
           onViewportEnter={() => setTimeout(() => setInView(true), 200)}
         >
-          <motion.span variants={fadeUp} className="section-label">Skills & Expertise</motion.span>
           <motion.h2 variants={fadeUp} custom={1} className="section-heading">Technical Proficiency</motion.h2>
           <motion.p variants={fadeUp} custom={2} className="section-sub" style={{ marginBottom: '48px' }}>
             Technologies and tools I use to bring ideas to life.
           </motion.p>
 
           <div className="skills-grid">
-            {/* Skill category cards — 2 columns, 3 rows */}
-            <div className="skills-categories">
-              {skillCategories.map((cat, i) => (
-                <motion.div key={i} variants={scaleIn} custom={i + 3} className="glass" style={{ padding: '24px' }}>
-                  <h4 style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '14px', color: '#ccc' }}>{cat.title}</h4>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                    {cat.items.map((s) => <span key={s} className="pill">{s}</span>)}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Proficiency bars */}
-            <motion.div variants={fadeUp} custom={9} className="glass" style={{ padding: '28px' }}>
-              <h4 style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '20px', color: '#ccc' }}>Proficiency</h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                {proficiency.map((p) => (
-                  <div key={p.name}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '0.82rem' }}>
-                      <span style={{ color: '#ccc' }}>{p.name}</span>
-                      <span style={{ color: '#8888a0' }}>{p.pct}%</span>
-                    </div>
-                    <div className="bar-track">
-                      <div className="bar-fill" style={{ width: inView ? `${p.pct}%` : '0%' }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+            {skillCategories.map((cat, i) => (
+              <motion.div key={i} variants={scaleIn} custom={i + 3} className="glass" style={{ padding: '24px' }}>
+                <h4 style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '14px', color: '#ccc' }}>{cat.title}</h4>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {cat.items.map((s) => <span key={s} className="pill">{s}</span>)}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
@@ -582,41 +583,115 @@ const ProjectsSection = () => (
   <section id="projects" style={{ padding: '100px 24px', position: 'relative', zIndex: 1 }}>
     <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}>
-        <motion.span variants={fadeUp} className="section-label">Portfolio</motion.span>
+        
+        {/* --- Research Work --- */}
+        <motion.h2 variants={fadeUp} custom={1} className="section-heading">Research Work</motion.h2>
+        <motion.p variants={fadeUp} custom={2} className="section-sub" style={{ marginBottom: '48px' }}>
+          Academic and experimental research on AI agents and security.<br/>
+          <span style={{ color: 'var(--accent)', fontWeight: 500, display: 'inline-block', marginTop: '8px' }}>
+            Presented at the FLAIRS Conference & Published in IEEE Xplore.
+          </span>
+        </motion.p>
+
+        <div className="projects-grid" style={{ marginBottom: '100px' }}>
+          {researchData.map((p, i) => (
+            <React.Fragment key={i}>
+              <motion.div
+                variants={scaleIn}
+                custom={i + 3}
+                className="glass"
+                style={{ padding: '0', overflow: 'hidden' }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              >
+                <div style={{ padding: '24px' }}>
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '16px', textAlign: 'center' }}>{p.title}</h3>
+                  {p.event && <p style={{ color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '16px', textAlign: 'center' }}>{p.event}</p>}
+                  <ul style={{ paddingLeft: '20px', color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: 1.65, marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    {p.description.split('. ').filter(Boolean).map((sentence, idx) => {
+                      const text = sentence.trim() + (sentence.trim().endsWith('.') ? '' : '.');
+                      return <li key={idx} dangerouslySetInnerHTML={{ __html: highlightKeywords(text) }} />;
+                    })}
+                  </ul>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
+                    {p.techs.map((t) => <span key={t} className="pill" style={{ fontSize: '0.7rem' }}>{t}</span>)}
+                  </div>
+                  {p.links && (
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                      {p.links.map((link) => (
+                        link.url && (
+                          <a
+                            key={link.text}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '6px',
+                              color: 'var(--accent)',
+                              fontSize: '0.82rem',
+                              fontWeight: 600,
+                              textDecoration: 'none',
+                            }}
+                          >
+                            {link.text} →
+                          </a>
+                        )
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+
+              {/* FLAIRS Conference Glimpse */}
+              {i === 1 && (
+                <motion.div
+                  variants={scaleIn}
+                  custom={5}
+                  className="glass"
+                  style={{ padding: '24px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                >
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '16px', textAlign: 'center' }}>Glimpse of the Conference (FLAIRS)</h3>
+                  <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: 1.65, marginBottom: '24px' }}>
+                    Presenting my research on AI agents and IoT security at the FLAIRS Conference. Engaging with industry experts, sharing insights on Tiny LLMs, and discussing the future of autonomous systems.
+                  </p>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginTop: 'auto' }}>
+                    {[flairs1, flairs2, flairs3, flairs4].map((imgSrc, idx) => (
+                      <img key={idx} src={imgSrc} alt={`conference-${idx}`} loading="lazy" style={{ width: '100%', height: '140px', objectFit: 'cover', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }} />
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        {/* --- Featured Projects --- */}
         <motion.h2 variants={fadeUp} custom={1} className="section-heading">Featured Projects</motion.h2>
         <motion.p variants={fadeUp} custom={2} className="section-sub" style={{ marginBottom: '48px' }}>
           A showcase of my work across AI, ML, and full-stack engineering.
         </motion.p>
 
-          <div className="projects-grid">
+        <div className="projects-grid">
           {projectsData.map((p, i) => (
             <motion.div
               key={i}
               variants={scaleIn}
               custom={i + 3}
               className="glass"
-              style={{ padding: '0', overflow: 'hidden', cursor: p.github ? 'pointer' : 'default' }}
+              style={{ padding: '0', overflow: 'hidden' }}
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
-              onClick={() => p.github && window.open(p.github, '_blank')}
             >
-              {/* Visual */}
-              <div className="project-visual">
-                <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s cubic-bezier(0.22,1,0.36,1)' }} />
-                <div
-                  className="overlay"
-                  style={{
-                    background: `linear-gradient(180deg, transparent 30%, rgba(10,10,15,0.85) 100%)`,
-                  }}
-                />
-                <div style={{ position: 'absolute', top: '16px', right: '16px' }}>
-                  <span className="pill" style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', fontSize: '0.72rem' }}>{p.category}</span>
-                </div>
-              </div>
-
               {/* Content */}
-              <div style={{ padding: '24px' }}>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '8px' }}>{p.title}</h3>
-                <p style={{ color: '#8888a0', fontSize: '0.85rem', lineHeight: 1.65, marginBottom: '16px' }}>{p.description}</p>
+              <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '16px' }}>{p.title}</h3>
+                <ul style={{ paddingLeft: '20px', color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: 1.65, marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1, margin: 0 }}>
+                  {p.description.split('. ').filter(Boolean).map((sentence, idx) => {
+                    const text = sentence.trim() + (sentence.trim().endsWith('.') ? '' : '.');
+                    return <li key={idx} dangerouslySetInnerHTML={{ __html: highlightKeywords(text) }} />;
+                  })}
+                </ul>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
                   {p.techs.map((t) => <span key={t} className="pill" style={{ fontSize: '0.7rem' }}>{t}</span>)}
                 </div>
@@ -630,7 +705,7 @@ const ProjectsSection = () => (
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '6px',
-                      color: '#a78bfa',
+                      color: 'var(--accent)',
                       fontSize: '0.82rem',
                       fontWeight: 600,
                       textDecoration: 'none',
@@ -643,6 +718,49 @@ const ProjectsSection = () => (
             </motion.div>
           ))}
         </div>
+
+        {/* --- Hackathons --- */}
+        <motion.h2 variants={fadeUp} custom={1} className="section-heading" style={{ marginTop: '80px' }}>Hackathons</motion.h2>
+        <motion.p variants={fadeUp} custom={2} className="section-sub" style={{ marginBottom: '48px' }}>
+          Award-winning projects and competitive programming events.
+        </motion.p>
+
+        <div className="projects-grid">
+          {hackathonData.map((p, i) => (
+            <motion.div
+              key={i}
+              variants={scaleIn}
+              custom={i + 3}
+              className="glass"
+              style={{ padding: '24px', overflow: 'hidden' }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+            >
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '12px', textAlign: 'center' }}>{p.title}</h3>
+              {p.event && <p style={{ color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '16px', textAlign: 'center' }}>{p.event}</p>}
+              <ul style={{ paddingLeft: '20px', color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: 1.65, marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '8px', margin: 0 }}>
+                {p.description.split('. ').filter(Boolean).map((sentence, idx) => {
+                  const text = sentence.trim() + (sentence.trim().endsWith('.') ? '' : '.');
+                  return <li key={idx} dangerouslySetInnerHTML={{ __html: highlightKeywords(text) }} />;
+                })}
+              </ul>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px', flexGrow: 1 }}>
+                {p.techs.map((t) => <span key={t} className="pill" style={{ fontSize: '0.7rem' }}>{t}</span>)}
+              </div>
+              {p.github && (
+                <a
+                  href={p.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none', marginTop: 'auto' }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  View on GitHub <span aria-hidden="true">→</span>
+                </a>
+              )}
+            </motion.div>
+          ))}
+        </div>
+
       </motion.div>
     </div>
   </section>
@@ -653,7 +771,6 @@ const ContactSection = () => (
   <section id="contact" style={{ padding: '100px 24px', position: 'relative', zIndex: 1 }}>
     <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}>
-        <motion.span variants={fadeUp} className="section-label" style={{ justifyContent: 'center' }}>Contact</motion.span>
         <motion.h2 variants={fadeUp} custom={1} className="section-heading">
           Let's build something <br />amazing together
         </motion.h2>
@@ -675,7 +792,7 @@ const ContactSection = () => (
         </motion.div>
 
         <motion.div variants={fadeUp} custom={4} style={{ marginTop: '80px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.06)', color: '#555566', fontSize: '0.8rem' }}>
-          © {new Date().getFullYear()} Chetanya Rathi · Built with React & Framer Motion
+          © {new Date().getFullYear()} Chetanya Rathi
         </motion.div>
       </motion.div>
     </div>
@@ -761,20 +878,16 @@ const AIAssistant = () => {
 // ═══════════════════════════════════════════════════════════════
 
 function App() {
-  // Init Lenis smooth scroll
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-    });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
-  }, []);
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
@@ -785,16 +898,31 @@ function App() {
         <div className="ambient-orb orb-3" />
       </div>
       <div className="grid-overlay" />
+      
+      <button 
+        className="theme-toggle-btn"
+        onClick={toggleTheme}
+        aria-label="Toggle Theme"
+      >
+        {theme === 'dark' ? '☀️' : '🌙'}
+      </button>
 
       <Navigation />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ContactSection />
-      </main>
+        
+        <Routes>
+          <Route path="/" element={
+            <main>
+              <HeroSection />
+              <AboutSection />
+              <ExperienceSection />
+              <SkillsSection />
+              <ProjectsSection />
+              <ContactSection />
+            </main>
+          } />
+          <Route path="/chatbot" element={<ResumeChatbot />} />
+        </Routes>
+        
       <AIAssistant />
     </div>
   );
