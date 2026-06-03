@@ -71,7 +71,9 @@ const highlightKeywords = (text) => {
     // Other projects keywords
     'agentic data analysis system', 'WhatsApp AI agent', 'personality tuning',
     'natural typing delays', 'OTP safety guards', 'ATS keywords', 'AI resume optimizer',
-    'Chrome extension', 'intelligent chatbot', 'semantic retrieval'
+    'Chrome extension', 'intelligent chatbot', 'semantic retrieval',
+    // Syracuse Hackathon & new keywords
+    '(NLP)', 'top award', 'university-wide'
 
   ];
   
@@ -80,7 +82,7 @@ const highlightKeywords = (text) => {
   
   sortedKeywords.forEach(kw => {
     const escapedKw = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(^|\\W)(${escapedKw})($|\\W)`, 'gi');
+    const regex = new RegExp(`(^|\\W)(${escapedKw})($|\\W)(?![^<>]*>)`, 'gi');
     html = html.replace(regex, '$1<strong style="color: var(--text); font-weight: 600;">$2</strong>$3');
   });
   
