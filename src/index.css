@@ -327,8 +327,8 @@ body {
   z-index: 100;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 12px;
+  gap: 2px;
+  padding: 6px 10px;
   border-radius: var(--radius-lg);
   background: var(--nav-bg);
   backdrop-filter: blur(20px);
@@ -337,7 +337,7 @@ body {
   box-shadow: var(--shadow-nav);
 }
 .nav-link {
-  padding: 8px 16px;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
   font-size: 0.82rem;
   font-weight: 500;

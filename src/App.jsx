@@ -115,7 +115,7 @@ const researchData = [
     description: 'Developed an advanced LangGraph framework orchestrating Corrective, Pre-Act, and Workflow agents for highly accurate information retrieval. Integrated ChromaDB and Perplexity API to validate and self-correct retrieved contexts in real-time. Achieved a 93% Faithfulness score across 120 rigorous test cases, demonstrating robust reasoning capabilities.',
     techs: ['LangGraph', 'ChromaDB', 'Python', 'FastAPI', 'Gemini'],
     links: [
-      { text: 'View Paper', url: '#' }
+      { text: 'View Paper', url: 'https://journals.flvc.org/FLAIRS/article/view/141838' }
     ]
   },
   {
@@ -126,7 +126,7 @@ const researchData = [
     description: 'Engineered a lightweight, edge-compatible security solution by fine-tuning Tiny LLMs (Qwen3 & Phi-3) using LoRA techniques on the Edge-IIoTset dataset. The model achieved 100% binary classification accuracy in identifying anomalous network traffic. Autonomously generates actionable remediation strategies mapped directly to MITRE CAPEC standards.',
     techs: ['PyTorch', 'LoRA', 'Unsloth', 'HuggingFace', 'MITRE'],
     links: [
-      { text: 'View Paper', url: '#' }
+      { text: 'View Paper', url: 'https://journals.flvc.org/FLAIRS/article/view/141840' }
     ]
   },
   {
@@ -142,62 +142,110 @@ const researchData = [
   },
 ];
 
-const projectsData = [
+const projectCategories = [
   {
-    title: 'Agentic Data Analyst',
-    category: 'Gen AI',
-    image: projAiMl,
-    description: 'Architected an agentic data analysis system using DeepAnalyze-8B deployed on a GCP L4 GPU instance as the specialist worker, with Gemini Flash supervising routing decisions and orchestrating an Analyze-Code-Execute loop with AST validation. Containerized the inference pipeline with Docker, exposed via FastAPI for low-latency querying, and integrated automated HTML report generation across hybrid LLM routing with self-correcting retry loops.',
-    techs: ['DeepAnalyze-8B', 'Gemini Flash', 'GCP', 'FastAPI', 'Docker'],
-    github: null,
+    title: 'Multi Agentic systems and LLM Fine Tuning',
+    description: 'Projects focused on autonomous agents, RAG pipelines, and LLM optimizations.',
+    projects: [
+      {
+        title: 'Agentic Data Analyst',
+        category: 'Gen AI',
+        image: projAiMl,
+        description: 'Architected an agentic data analysis system using DeepAnalyze-8B on a GCP L4 GPU, with Gemini Flash supervising an Analyze-Code-Execute loop with AST validation. Containerized the inference pipeline with Docker and exposed via FastAPI, integrating automated HTML report generation with self-correcting retry loops.',
+        techs: ['DeepAnalyze-8B', 'Gemini Flash', 'GCP', 'FastAPI', 'Docker'],
+        github: null,
+      },
+      {
+        title: 'WhatsApp Mimic RAG Agent',
+        category: 'Gen AI',
+        image: projWhatsapp,
+        description: 'Autonomous WhatsApp AI agent that mimics your texting style using RAG with ChromaDB semantic search on real chat exports. Per-contact personality tuning, group chat support, and Gemini 2.5 Flash generation with natural typing delays and OTP safety guards.',
+        techs: ['FastAPI', 'ChromaDB', 'Gemini', 'Node.js', 'whatsapp-web.js'],
+        github: 'https://github.com/ChetanyaRathi/WhatsappMiniRAG',
+      },
+      {
+        title: 'Resume Tailor',
+        category: 'AI Tool',
+        image: projResume,
+        description: 'AI resume optimizer that tailors bullet points to match job descriptions using Gemini 2.5 Pro, identifying top ATS keywords and injecting them naturally. Available as CLI, web app, and Chrome extension, it securely preserves original structure, metrics, and word counts.',
+        techs: ['Gemini 2.5 Pro', 'Node.js', 'Express', 'Puppeteer', 'Chrome Extension'],
+        github: 'https://github.com/ChetanyaRathi/Resume_tailor',
+      },
+      {
+        title: 'Lenox AI Chatbot',
+        category: 'AI',
+        image: projChatbot,
+        description: 'Engineered an intelligent chatbot answering personalized questions about resume and experience. Built using LangChain, Vertex AI, and ChromaDB for efficient semantic retrieval.',
+        techs: ['LangChain', 'Vertex AI', 'ChromaDB', 'Python'],
+        github: 'https://github.com/ChetanyaRathi/LenoxAI-ChatBot',
+      }
+    ]
   },
   {
-    title: 'WhatsApp Mimic RAG Agent',
-    category: 'Gen AI',
-    image: projWhatsapp,
-    description: 'Autonomous WhatsApp AI agent that mimics your texting style using RAG with ChromaDB semantic search on real chat exports. Per-contact personality tuning, group chat support, and Gemini 2.5 Flash generation with natural typing delays and OTP safety guards.',
-    techs: ['FastAPI', 'ChromaDB', 'Gemini', 'Node.js', 'whatsapp-web.js'],
-    github: 'https://github.com/ChetanyaRathi/WhatsappMiniRAG',
+    title: 'Playwright & AI Automation',
+    description: 'Advanced browser automation, self-healing E2E testing, and agentic workflows using Playwright.',
+    projects: [
+      {
+        title: 'Agentic Shopping Agent (Browser-Use AI)',
+        category: 'AI Agent',
+        image: projAiMl,
+        description: 'Built a natural-language shopping agent driving a Playwright MCP browser to execute a Plan-Discover-Browse-Extract pipeline, returning ranked product links from live retail sites. Engineered a cost-aware Gemini-powered backend with dynamic model routing, accessibility-tree extraction, and Vision fallbacks, served via a React frontend.',
+        techs: ['Playwright MCP', 'Gemini', 'FastAPI', 'Pydantic', 'React'],
+        github: 'https://github.com/ChetanyaRathi/agentic-shopping-agent',
+      },
+      {
+        title: 'AuraQA – Self-Healing E2E Test Agent',
+        category: 'AI Testing',
+        image: projAiMl,
+        description: 'Built AuraQA, a self-healing E2E test agent that generates realistic user flows in Playwright and automatically repairs broken CSS selectors using LLM intent matching against visible elements. Enforced a verify-before-trust loop to validate AI-suggested selectors live, supported by smart DOM shrinking, a React dashboard, and GitHub Actions CI/CD.',
+        techs: ['Playwright', 'Gemini', 'Groq', 'FastAPI', 'React'],
+        github: 'https://github.com/ChetanyaRathi/aura-qa',
+      },
+      {
+        title: 'playwright-job-applier',
+        category: 'Automation Pipeline',
+        image: projJobhunter,
+        description: 'Built a sponsorship-aware job watcher that polls ATS APIs and uses a Playwright fallback to diff postings, filtering them through a cheap-first keyword and Gemini LLM cascade. Deployed on GCP Cloud Run with a FastAPI backend and review dashboard, drafting matches into a Google Sheet for human approval before automated outreach.',
+        techs: ['Playwright', 'FastAPI', 'SQLite', 'Docker', 'GCP Cloud Run'],
+        github: 'https://github.com/ChetanyaRathi/playwright-job-applier',
+      }
+    ]
   },
   {
-    title: 'Autonomous Job Hunter',
-    category: 'Full Stack',
-    image: projJobhunter,
-    description: 'AI-powered job search dashboard that scrapes listings via Serper API, parses descriptions with Gemini, and scores matches based on skills, experience level, and visa sponsorship. Features a Flask web UI with real-time search pipeline and automated HTML email digests.',
-    techs: ['Flask', 'Gemini', 'Serper API', 'SQLite', 'SMTP'],
-    github: 'https://github.com/ChetanyaRathi/Autonomous-Job-Hunter',
+    title: 'Machine Learning and NLP',
+    description: 'Deep learning models, natural language processing, and predictive analytics.',
+    projects: [
+      {
+        title: 'AI Text Detection (BERT)',
+        category: 'Deep Learning',
+        image: projBert,
+        description: 'Developed a BERT-based classifier distinguishing AI vs Human text with 96.81% accuracy. Achieved robust performance via advanced fine-tuning on multi-source datasets.',
+        techs: ['BERT', 'Transformers', 'Python', 'NLP'],
+        github: null,
+      }
+    ]
   },
   {
-    title: 'Resume Tailor',
-    category: 'AI Tool',
-    image: projResume,
-    description: 'AI resume optimizer that tailors bullet points to match job descriptions using Gemini 2.5 Pro. Parses PDF/DOCX resumes, identifies top ATS keywords, and naturally injects them while preserving original structure, metrics, and word count. Available as CLI, web app, and Chrome extension.',
-    techs: ['Gemini 2.5 Pro', 'Node.js', 'Express', 'Puppeteer', 'Chrome Extension'],
-    github: 'https://github.com/ChetanyaRathi/Resume_tailor',
-  },
-  {
-    title: 'AI Text Detection (BERT)',
-    category: 'Deep Learning',
-    image: projBert,
-    description: 'Developed a BERT-based classifier distinguishing AI vs Human text with 96.81% accuracy. Achieved robust performance via advanced fine-tuning on multi-source datasets.',
-    techs: ['BERT', 'Transformers', 'Python', 'NLP'],
-    github: null,
-  },
-  {
-    title: 'Virtual AI Trainer',
-    category: 'Full Stack',
-    image: projFitness,
-    description: 'Integrated Google Gemini (Vertex AI) for personalized fitness insights. Interactive dashboards with Chart.js, improving user engagement by 45%.',
-    techs: ['Gemini', 'Vertex AI', 'Chart.js', 'SQLite'],
-    github: 'https://github.com/ChetanyaRathi/Virtual-AI-Trainer',
-  },
-  {
-    title: 'Lenox AI Chatbot',
-    category: 'AI',
-    image: projChatbot,
-    description: 'Engineered an intelligent chatbot answering personalized questions about resume and experience. Built using LangChain, Vertex AI, and ChromaDB for efficient semantic retrieval.',
-    techs: ['LangChain', 'Vertex AI', 'ChromaDB', 'Python'],
-    github: 'https://github.com/ChetanyaRathi/LenoxAI-ChatBot',
+    title: 'Other Projects',
+    description: 'Full-stack applications and diverse engineering projects.',
+    projects: [
+      {
+        title: 'Autonomous Job Hunter',
+        category: 'Full Stack',
+        image: projJobhunter,
+        description: 'AI-powered job search dashboard that scrapes listings via Serper API, parses descriptions with Gemini, and scores matches based on skills, experience level, and visa sponsorship. Features a Flask web UI with real-time search pipeline and automated HTML email digests.',
+        techs: ['Flask', 'Gemini', 'Serper API', 'SQLite', 'SMTP'],
+        github: 'https://github.com/ChetanyaRathi/Autonomous-Job-Hunter',
+      },
+      {
+        title: 'Virtual AI Trainer',
+        category: 'Full Stack',
+        image: projFitness,
+        description: 'Integrated Google Gemini (Vertex AI) for personalized fitness insights. Interactive dashboards with Chart.js, improving user engagement by 45%.',
+        techs: ['Gemini', 'Vertex AI', 'Chart.js', 'SQLite'],
+        github: 'https://github.com/ChetanyaRathi/Virtual-AI-Trainer',
+      }
+    ]
   }
 ];
 
@@ -214,10 +262,10 @@ const hackathonData = [
 const skillCategories = [
   { title: 'Languages', items: ['Python', 'C++', 'JavaScript', 'TypeScript', 'Java', 'PHP'] },
   { title: 'Frontend', items: ['React.js', 'Next.js', 'HTML5', 'Tailwind CSS', 'MERN Stack'] },
-  { title: 'Backend & APIs', items: ['FastAPI', 'Flask', 'Node.js', 'Express.js', 'REST APIs'] },
+  { title: 'Backend & APIs', items: ['FastAPI', 'Flask', 'Node.js', 'Express.js', 'REST APIs', 'Playwright', 'Pydantic'] },
   { title: 'Databases', items: ['MongoDB', 'PostgreSQL', 'SQL', 'ChromaDB', 'Redis', 'SQLite'] },
-  { title: 'Gen AI & ML', items: ['LangChain', 'LangGraph', 'RAG', 'OpenAI', 'Gemini', 'Vertex AI', 'BERT', 'OpenCV'] },
-  { title: 'Cloud & DevOps', items: ['AWS S3', 'AWS Lambda', 'AWS RDS', 'Docker', 'Git', 'Linux', 'Google Cloud'] },
+  { title: 'Gen AI & ML', items: ['LangChain', 'LangGraph', 'RAG', 'OpenAI', 'Gemini', 'Vertex AI', 'Groq', 'BERT', 'OpenCV'] },
+  { title: 'Cloud & DevOps', items: ['AWS S3', 'AWS Lambda', 'AWS RDS', 'Docker', 'GitHub Actions', 'GCP Cloud Run', 'Git', 'Linux', 'Google Cloud'] },
 ];
 
 const proficiency = [
@@ -261,6 +309,7 @@ const navItems = [
   { label: 'About', href: '/#about' },
   { label: 'Experience', href: '/#experience' },
   { label: 'Skills', href: '/#skills' },
+  { label: 'Research', href: '/#research' },
   { label: 'Projects', href: '/#projects' },
   { label: 'Contact', href: '/#contact' },
 ];
@@ -425,7 +474,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           style={{ display: 'flex', gap: '10px', marginTop: '8px' }}
         >
-          <a href="https://www.linkedin.com/in/chetanya-rathi/" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/chetanya-rathi-b7413b206/" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
           <a href="https://github.com/ChetanyaRathi" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
@@ -585,7 +634,7 @@ const ProjectsSection = () => (
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}>
         
         {/* --- Research Work --- */}
-        <motion.h2 variants={fadeUp} custom={1} className="section-heading">Research Work</motion.h2>
+        <motion.h2 id="research" variants={fadeUp} custom={1} className="section-heading" style={{ scrollMarginTop: '100px' }}>Research Work</motion.h2>
         <motion.p variants={fadeUp} custom={2} className="section-sub" style={{ marginBottom: '48px' }}>
           Academic and experimental research on AI agents and security.<br/>
           <span style={{ color: 'var(--accent)', fontWeight: 500, display: 'inline-block', marginTop: '8px' }}>
@@ -668,56 +717,59 @@ const ProjectsSection = () => (
         </div>
 
         {/* --- Featured Projects --- */}
-        <motion.h2 variants={fadeUp} custom={1} className="section-heading">Featured Projects</motion.h2>
-        <motion.p variants={fadeUp} custom={2} className="section-sub" style={{ marginBottom: '48px' }}>
-          A showcase of my work across AI, ML, and full-stack engineering.
-        </motion.p>
+        <motion.h2 variants={fadeUp} custom={1} className="section-heading" style={{ marginBottom: '48px' }}>Featured Projects</motion.h2>
 
-        <div className="projects-grid">
-          {projectsData.map((p, i) => (
-            <motion.div
-              key={i}
-              variants={scaleIn}
-              custom={i + 3}
-              className="glass"
-              style={{ padding: '0', overflow: 'hidden' }}
-              whileHover={{ y: -6, transition: { duration: 0.3 } }}
-            >
-              {/* Content */}
-              <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '16px' }}>{p.title}</h3>
-                <ul style={{ paddingLeft: '20px', color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: 1.65, marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1, margin: 0 }}>
-                  {p.description.split('. ').filter(Boolean).map((sentence, idx) => {
-                    const text = sentence.trim() + (sentence.trim().endsWith('.') ? '' : '.');
-                    return <li key={idx} dangerouslySetInnerHTML={{ __html: highlightKeywords(text) }} />;
-                  })}
-                </ul>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
-                  {p.techs.map((t) => <span key={t} className="pill" style={{ fontSize: '0.7rem' }}>{t}</span>)}
-                </div>
-                {p.github && (
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      color: 'var(--accent)',
-                      fontSize: '0.82rem',
-                      fontWeight: 600,
-                      textDecoration: 'none',
-                    }}
-                  >
-                    View on GitHub →
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {projectCategories.map((category, catIdx) => (
+          <div key={catIdx} style={{ marginBottom: '80px' }}>
+            <motion.h3 variants={fadeUp} custom={3} style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent)', letterSpacing: '0.5px', marginBottom: '24px', marginTop: catIdx > 0 ? '40px' : '0' }}>{category.title}</motion.h3>
+
+            <div className="projects-grid">
+              {category.projects.map((p, i) => (
+                <motion.div
+                  key={i}
+                  variants={scaleIn}
+                  custom={i + 3}
+                  className="glass"
+                  style={{ padding: '0', overflow: 'hidden' }}
+                  whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                >
+                  {/* Content */}
+                  <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                    <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '16px' }}>{p.title}</h3>
+                    <ul style={{ paddingLeft: '20px', color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: 1.65, marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1, margin: 0 }}>
+                      {p.description.split('. ').filter(Boolean).map((sentence, idx) => {
+                        const text = sentence.trim() + (sentence.trim().endsWith('.') ? '' : '.');
+                        return <li key={idx} dangerouslySetInnerHTML={{ __html: highlightKeywords(text) }} />;
+                      })}
+                    </ul>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
+                      {p.techs.map((t) => <span key={t} className="pill" style={{ fontSize: '0.7rem' }}>{t}</span>)}
+                    </div>
+                    {p.github && (
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          color: 'var(--accent)',
+                          fontSize: '0.82rem',
+                          fontWeight: 600,
+                          textDecoration: 'none',
+                        }}
+                      >
+                        View on GitHub →
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ))}
 
         {/* --- Hackathons --- */}
         <motion.h2 variants={fadeUp} custom={1} className="section-heading" style={{ marginTop: '80px' }}>Hackathons</motion.h2>
@@ -783,7 +835,7 @@ const ContactSection = () => (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             Email Me
           </a>
-          <a href="https://www.linkedin.com/in/chetanya-rathi/" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+          <a href="https://www.linkedin.com/in/chetanya-rathi-b7413b206/" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
             LinkedIn
           </a>
           <a href="https://github.com/ChetanyaRathi" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
@@ -792,7 +844,7 @@ const ContactSection = () => (
         </motion.div>
 
         <motion.div variants={fadeUp} custom={4} style={{ marginTop: '80px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.06)', color: '#555566', fontSize: '0.8rem' }}>
-          © {new Date().getFullYear()} Chetanya Rathi
+          © 2026 Chetanya Rathi | rathi.chetanya@gmail.com
         </motion.div>
       </motion.div>
     </div>
