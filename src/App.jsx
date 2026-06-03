@@ -59,7 +59,19 @@ const highlightKeywords = (text) => {
     'MERN Stack', 'Serper API', 'SQLite', 'SMTP', 'Gemini 2.5 Pro', 'Puppeteer', 'Perplexity API', 'Qwen3', 
     'Phi-3', 'LoRA', 'MITRE CAPEC', 'Flask', 'NLP', 'Scikit-Learn', 'BERT', 'Transformers', 'Google Gemini', 
     'Vertex AI', 'Chart.js', 'MediaPipe', 'OpenCV', 'React', 'Tailwind CSS', 'Pinecone', 'Next.js', 'PostgreSQL', 
-    '93% Faithfulness score', '100% binary classification accuracy', '60% improvement', '96.81% accuracy'
+    '93% Faithfulness score', '100% binary classification accuracy', '60% improvement', '96.81% accuracy',
+
+    // Playwright & AI Automation project keywords
+    'Playwright MCP browser', 'Plan-Discover-Browse-Extract pipeline', 'natural-language shopping agent',
+    'dynamic model routing', 'accessibility-tree extraction', 'Vision fallbacks',
+    'AuraQA', 'self-healing E2E test agent', 'Playwright', 'LLM intent matching',
+    'verify-before-trust loop', 'smart DOM shrinking', 'GitHub Actions CI/CD',
+    'sponsorship-aware job watcher', 'ATS APIs', 'Playwright fallback', 'Gemini LLM cascade',
+    'GCP Cloud Run', 'Google Sheet', 'automated outreach',
+    // Other projects keywords
+    'agentic data analysis system', 'WhatsApp AI agent', 'personality tuning',
+    'natural typing delays', 'OTP safety guards', 'ATS keywords', 'AI resume optimizer',
+    'Chrome extension', 'intelligent chatbot', 'semantic retrieval'
 
   ];
   
