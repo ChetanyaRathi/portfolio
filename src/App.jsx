@@ -71,7 +71,7 @@ const highlightKeywords = (text) => {
     // Other projects keywords
     'agentic data analysis system', 'WhatsApp AI agent', 'personality tuning',
     'natural typing delays', 'OTP safety guards', 'ATS keywords', 'AI resume optimizer',
-    'Chrome extension', 'intelligent chatbot', 'semantic retrieval',
+    'Chrome extension', 'intelligent chatbot', 'semantic retrieval', 'Swaylytics',
     // Syracuse Hackathon & new keywords
     '(NLP)', 'top award', 'university-wide'
 
@@ -162,12 +162,12 @@ const projectCategories = [
     description: 'Projects focused on autonomous agents, RAG pipelines, and LLM optimizations.',
     projects: [
       {
-        title: 'Agentic Data Analyst',
+        title: 'Agentic Data Analyst (Swaylytics)',
         category: 'Gen AI',
         image: projAiMl,
         description: 'Architected an agentic data analysis system using DeepAnalyze-8B on a GCP L4 GPU, with Gemini Flash supervising an Analyze-Code-Execute loop with AST validation. Containerized the inference pipeline with Docker and exposed via FastAPI, integrating automated HTML report generation with self-correcting retry loops.',
         techs: ['DeepAnalyze-8B', 'Gemini Flash', 'GCP', 'FastAPI', 'Docker'],
-        github: null,
+        github: 'https://github.com/ChetanyaRathi/Swaylytics',
       },
       {
         title: 'WhatsApp Mimic RAG Agent',
